@@ -1,0 +1,45 @@
+import scipy as sp
+import matplotlib.pyplot as plt
+from itertools import groupby
+#%%
+#numbers given
+x = sp.loadtxt(r"C:\Users\Yi Gan\Documents\Y1 Project\NumberFit_148.txt")
+print(x)
+#%%
+grid = [[1,0,1,0,1,0,1,0,1,0,1,0,1],
+        [0,0,0,0,0,0,1,0,0,0,0,0,0],
+        [1,0,1,0,1,0,0,0,1,0,1,0,1],
+        [0,0,0,0,0,0,1,0,0,0,0,0,0],
+        [1,0,1,1,1,0,1,0,1,0,1,0,1],
+        [0,0,0,0,0,0,0,1,0,0,0,0,0],
+        [1,1,1,0,1,0,1,0,1,0,1,1,1],
+        [0,0,0,0,0,1,0,0,0,0,0,0,0],
+        [1,0,1,0,1,0,1,0,1,1,1,0,1],
+        [0,0,0,0,0,0,1,0,0,0,0,0,0],
+        [1,0,1,0,1,0,0,0,1,0,1,0,1],
+        [0,0,0,0,0,0,1,0,0,0,0,0,0],
+        [1,0,1,0,1,0,1,0,1,0,1,0,1]]
+
+print(grid)
+
+grid = np.array(grid)
+print(grid)
+print(type(grid))
+print(grid[1])
+#%%
+array = np.arange(13)
+print(array)
+for i in (array):
+    myinput = grid[i]
+print (myinput)
+#%%
+#creating empty list to store output
+from itertools import groupby
+
+myoutput = []
+
+for k,g in groupby(myinput):
+
+    myoutput.append((len(list(g)),int(k)))
+
+print(*myoutput)

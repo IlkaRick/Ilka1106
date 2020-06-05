@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from itertools import groupby
 #%%
 #numbers given
-x = sp.loadtxt(r"C:\Users\Yi Gan\Documents\Y1 Project\NumberFit_148.txt")
+x = sp.loadtxt(r"C:\Users\Yi Gan\Documents\Y1 Project\NumberFit_148.txt") #make sure to change location on different computers
 print(x)
 #%%
 grid = [[1,0,1,0,1,0,1,0,1,0,1,0,1],
@@ -26,6 +26,19 @@ grid = np.array(grid)
 print(grid)
 print(type(grid))
 print(grid[1])
+#%%
+#creating empty list to store output
+from itertools import groupby
+array = np.arange(13)
+print(array)
+myoutput = []
+for i in (array):
+    myinput = grid[i]
+    for k,g in groupby(myinput):
+        myoutput.append('line')
+        myoutput.append((len(list(g)),int(k)))
+print (myinput)
+print(*myoutput)
 #%%
 array = np.arange(13)
 print(array)

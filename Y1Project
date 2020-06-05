@@ -28,7 +28,6 @@ print(type(grid))
 print(grid[1])
 #%%
 #creating empty list to store output
-from itertools import groupby
 array = np.arange(13)
 print(array)
 myoutput = []
@@ -40,6 +39,7 @@ for i in (array):
 print (myinput)
 print(*myoutput)
 #%%
+#initial code (only reads the first line)
 array = np.arange(13)
 print(array)
 for i in (array):

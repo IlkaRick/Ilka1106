@@ -2,6 +2,7 @@ import scipy as sp
 import numpy as np
 import matplotlib.pyplot as plt
 from itertools import groupby
+import pandas as pd
 #%%
 #numbers given
 x = sp.loadtxt(r"C:\Users\Yi Gan\Documents\Y1 Project\NumberFit_148.txt") #make sure to change location on different computers
@@ -27,6 +28,11 @@ grid = np.array(grid)
 print(grid)
 print(type(grid))
 print(grid[1])
+print(grid)
+#print(grid[:,0])
+df = pd.DataFrame(data = grid) #transpose grid, to read columns later on
+dgrid = df.T
+print(dgrid) #print transposed grid
 #%%
 #creating empty list to store output
 array = np.arange(13)
@@ -57,3 +63,20 @@ for k,g in groupby(myinput):
     myoutput.append((len(list(g)),int(k)))
 
 print(*myoutput)
+#%%
+downarray = np.array(dgrid)
+print(downarray)
+print(type(downarray))
+print(downarray[1])
+print(downarray[:,0])
+#%%
+#counts 0s and 1s in columns
+darray = []
+for j in (array):
+    dinput = downarray[j]
+    darray.append([j])
+    for m,n in groupby(dinput):
+        darray.append((len(list(n)),int(m)))
+print(dinput)
+print(*darray)
+#%%

@@ -80,3 +80,9 @@ for j in (array):
 print(dinput)
 print(*darray)
 #%%
+print(len(x))
+for l in (xarray):
+    xstr = str(x[l]) #counts number of digits in each number
+    xact = len(xstr) - 2 #Include -2 if xstr has .0 on the end of each number
+    #print(xstr)
+    print(xact)

@@ -87,12 +87,15 @@ for l in (xarray):
     print(xstr)
     print(xact)
 #%%
+def split(xstr):
+    return list(xstr)
 myoutput = []
 print(len(x)) #to check number of elements in document
-
+across = []
 for l in (xarray):
-    xstr = str(x[l]) #count number of digits in each number
-    xact = len(xstr) - 2 #Include -2 if xstr has .0 on the end of each number
+    xint = int(x[l]) #convert to integer
+    xstr = str(xint) #count number of digits in each number
+    xact = len(xstr) #Include -2 if xstr has .0 on the end of each number
     print(xstr)
     #print(xact)
     #check if there is space in each row for the number (in for loop, so will check each number for each row indiviually)
@@ -105,8 +108,9 @@ for l in (xarray):
             myoutput.append((len(list(g)),int(k))) #counts numbers of 1s and 0s
             if int(k) == 0: #0 signifies a space
                 if a == xact:
-                    print('indeed') #if the number of 0s is equal to the number of digits in the number
+                    #print('indeed') #if the number of 0s is equal to the number of digits in the number
+                    print(split(xstr))
                 
         #print (myinput)
-    #print(myoutput)
+    #print(*myoutput)
 #%%

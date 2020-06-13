@@ -92,6 +92,7 @@ def split(xstr):
 myoutput = []
 print(len(x)) #to check number of elements in document
 across = []
+down = []
 for l in (xarray):
     xint = int(x[l]) #convert to integer
     xstr = str(xint) #count number of digits in each number
@@ -101,16 +102,22 @@ for l in (xarray):
     #check if there is space in each row for the number (in for loop, so will check each number for each row indiviually)
     for i in (array):
         myinput = grid[i]
-        print(myinput)
+        #print(myinput)
         #myoutput.append([i])
         for k,g in groupby(myinput):
-            a = len(list(g))
+            num = len(list(g))
             myoutput.append((len(list(g)),int(k))) #counts numbers of 1s and 0s
             if int(k) == 0: #0 signifies a space
-                if a == xact:
+                if num == xact:
                     #print('indeed') #if the number of 0s is equal to the number of digits in the number
-                    print(split(xstr))
-                
+                    print(myinput)
+                    nlist = split(xstr)
+                    print(nlist)
+                    for a in (array):
+                        element = myinput[a]
+                        if element == 0:
+                            
+                    
         #print (myinput)
     #print(*myoutput)
 #%%

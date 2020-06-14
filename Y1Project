@@ -113,6 +113,7 @@ for l in (xarray):
                 klist = []
                 if num == xact:
                     #print('indeed') #if the number of 0s is equal to the number of digits in the number
+                    print()
                     print(myinput)
                     nlist = split(xstr) #split the digits in each number into a list
                     #print(nlist)
@@ -137,10 +138,26 @@ for l in (xarray):
                     darray = []
                     for j in (array):
                         dinput = downarray[j]
-                        darray.append([j])
+                        #darray.append([j])
                         for m,n in groupby(dinput):
+                            dnum = len(list(n))
                             darray.append((len(list(n)),int(m)))
-                            
+                            if int(m) == 0:
+                                mlist = []
+                                if dnum == xact:
+                                    #print(dinput)
+                                    for c in (array):
+                                        delement = dinput[c]
+                                        if delement == 0:
+                                            mlist.append([j])
+                                            mlist.append(xstr)
+                                        else:
+                                            mlist.append('-')
+                                    down.append(xstr)
+                                    down_n.append([j])
+                                    #try to check each digit in columns to see if across digit is equal
+                                                                           
+                        
                         #print(dinput)
                     #print(*darray)
                     
@@ -149,4 +166,6 @@ for l in (xarray):
     #print(*myoutput)
 print(across)
 print(across_n)
+#print(down)
+#print(down_n)
 #%%

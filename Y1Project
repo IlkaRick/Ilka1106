@@ -95,27 +95,35 @@ across = []
 down = []
 for l in (xarray):
     xint = int(x[l]) #convert to integer
-    xstr = str(xint) #count number of digits in each number
-    xact = len(xstr) #Include -2 if xstr has .0 on the end of each number
+    xstr = str(xint) #converts integer to string so that it can be counted
+    xact = len(xstr) #Counts number of digits in each number
     print(xstr)
     #print(xact)
     #check if there is space in each row for the number (in for loop, so will check each number for each row indiviually)
     for i in (array):
-        myinput = grid[i]
+        myinput = grid[i] 
         #print(myinput)
         #myoutput.append([i])
         for k,g in groupby(myinput):
-            num = len(list(g))
+            num = len(list(g)) #number of 0s or 1s in a group
             myoutput.append((len(list(g)),int(k))) #counts numbers of 1s and 0s
-            if int(k) == 0: #0 signifies a space
+            if int(k) == 0: #singles out spaces. 0 signifies a space
                 if num == xact:
                     #print('indeed') #if the number of 0s is equal to the number of digits in the number
                     print(myinput)
-                    nlist = split(xstr)
+                    nlist = split(xstr) #split the digits in each number into a list
                     print(nlist)
-                    for a in (array):
-                        element = myinput[a]
-                        if element == 0:
+                    koththamalli = np.arange(xact) 
+                    klist = []
+                    #bottom bit commented out as it does not quite work
+                    '''for a in (koththamalli):
+                        for b in (array):
+                            element = myinput[b]
+                            if element == 0:
+                                klist.append(nlist[a])
+                            else:
+                                klist.append('-')
+                        #print(klist)'''
                             
                     
         #print (myinput)

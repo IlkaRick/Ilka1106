@@ -131,9 +131,22 @@ for l in (xarray):
                     #print(klist)
                     across.append(xstr)
                     across_n.append([i])
-                    print(across)
-                    print(across_n)
+                    #print(across)
+                    #print(across_n)
+                    #counts 0s and 1s in columns (down)
+                    darray = []
+                    for j in (array):
+                        dinput = downarray[j]
+                        darray.append([j])
+                        for m,n in groupby(dinput):
+                            darray.append((len(list(n)),int(m)))
+                            
+                        #print(dinput)
+                    #print(*darray)
+                    
                     
         #print (myinput)
     #print(*myoutput)
+print(across)
+print(across_n)
 #%%

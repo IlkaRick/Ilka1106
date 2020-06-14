@@ -108,13 +108,15 @@ for l in (xarray):
             num = len(list(g)) #number of 0s or 1s in a group
             myoutput.append((len(list(g)),int(k))) #counts numbers of 1s and 0s
             if int(k) == 0: #singles out spaces. 0 signifies a space
+                klist = []
                 if num == xact:
                     #print('indeed') #if the number of 0s is equal to the number of digits in the number
                     print(myinput)
                     nlist = split(xstr) #split the digits in each number into a list
                     print(nlist)
                     koththamalli = np.arange(xact) 
-                    klist = []
+                    klist.append(xstr)
+                    #klist = []
                     #bottom bit commented out as it does not quite work
                     '''for a in (koththamalli):
                         for b in (array):
@@ -122,10 +124,11 @@ for l in (xarray):
                             if element == 0:
                                 klist.append(nlist[a])
                             else:
-                                klist.append('-')
-                        #print(klist)'''
+                                klist.append('-')'''
+                        #print(klist)
+                    print(klist)
                             
                     
         #print (myinput)
     #print(*myoutput)
-#%%
+    #%%

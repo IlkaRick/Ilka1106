@@ -118,17 +118,17 @@ for l in (xarray):
                     klist.append(xstr)
                     #klist = []
                     #bottom bit commented out as it does not quite work
-                    '''for a in (koththamalli):
-                        for b in (array):
-                            element = myinput[b]
-                            if element == 0:
-                                klist.append(nlist[a])
-                            else:
-                                klist.append('-')'''
-                        #print(klist)
+                    #for a in (koththamalli):
+                    for b in (array):
+                        element = myinput[b]
+                        if element == 0:
+                            klist.append(xstr) #appends whole number
+                        else:
+                            klist.append('-')
                     print(klist)
+                    #print(klist)
                             
                     
         #print (myinput)
     #print(*myoutput)
-    #%%
+#%%

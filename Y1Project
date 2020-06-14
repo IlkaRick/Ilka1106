@@ -92,7 +92,9 @@ def split(xstr):
 myoutput = []
 print(len(x)) #to check number of elements in document
 across = []
+across_n = []
 down = []
+down_n = []
 for l in (xarray):
     xint = int(x[l]) #convert to integer
     xstr = str(xint) #converts integer to string so that it can be counted
@@ -113,21 +115,24 @@ for l in (xarray):
                     #print('indeed') #if the number of 0s is equal to the number of digits in the number
                     print(myinput)
                     nlist = split(xstr) #split the digits in each number into a list
-                    print(nlist)
+                    #print(nlist)
                     koththamalli = np.arange(xact) 
-                    klist.append(xstr)
+                    #klist.append(xstr)
                     #klist = []
                     #bottom bit commented out as it does not quite work
                     #for a in (koththamalli):
                     for b in (array):
                         element = myinput[b]
                         if element == 0:
+                            #klist.append([i])
                             klist.append(xstr) #appends whole number
                         else:
                             klist.append('-')
-                    print(klist)
                     #print(klist)
-                            
+                    across.append(xstr)
+                    across_n.append([i])
+                    print(across)
+                    print(across_n)
                     
         #print (myinput)
     #print(*myoutput)

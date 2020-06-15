@@ -3,92 +3,113 @@ import numpy as np
 import matplotlib.pyplot as plt
 from itertools import groupby
 import pandas as pd
+import itertools
 #%%
 #numbers given
-x = sp.loadtxt(r"C:\Users\Yi Gan\Documents\Y1 Project\NumberFit_148.txt") #make sure to change location on different computers
+x = sp.loadtxt(r"C:\Users\anugi\OneDrive\Documents\Physics\Y1_project\number_fit_1.txt")
 print(x)
 #%%
+#using 0s as spaces and 1s as blocks. 
 grid = [[1,0,1,0,1,0,1,0,1,0,1,0,1],
         [0,0,0,0,0,0,1,0,0,0,0,0,0],
+        [1,0,1,0,1,0,1,0,1,0,1,0,1],
+        [0,0,0,0,1,0,0,0,0,0,0,0,0],
+        [1,0,1,1,1,0,1,1,1,0,1,0,1],
+        [0,0,0,0,0,0,1,0,0,0,0,1,1],
         [1,0,1,0,1,0,0,0,1,0,1,0,1],
+        [1,1,0,0,0,0,1,0,0,0,0,0,0],
+        [1,0,1,0,1,1,1,0,1,1,1,0,1],
+        [0,0,0,0,0,0,0,0,1,0,0,0,0],
+        [1,0,1,0,1,0,1,0,1,0,1,0,1],
         [0,0,0,0,0,0,1,0,0,0,0,0,0],
-        [1,0,1,1,1,0,1,0,1,0,1,0,1],
-        [0,0,0,0,0,0,0,1,0,0,0,0,0],
-        [1,1,1,0,1,0,1,0,1,0,1,1,1],
-        [0,0,0,0,0,1,0,0,0,0,0,0,0],
-        [1,0,1,0,1,0,1,0,1,1,1,0,1],
-        [0,0,0,0,0,0,1,0,0,0,0,0,0],
-        [1,0,1,0,1,0,0,0,1,0,1,0,1],
-        [0,0,0,0,0,0,1,0,0,0,0,0,0],
-        [1,0,1,0,1,0,1,0,1,0,1,0,1]]
-
+        [1,0,1,0,1,0,1,0,1,0,1,0,1]] #using p18 Number fit puzzle. Copy and paste grid for other puzzles
+#grid[:] = ['*' if ac == 1 else ac for ac in grid]
 print(grid)
-
-grid = np.array(grid)
-print(grid)
-print(type(grid))
-print(grid[1])
-print(grid)
-#print(grid[:,0])
+#print(grid[])
 df = pd.DataFrame(data = grid) #transpose grid, to read columns later on
 dgrid = df.T
 print(dgrid) #print transposed grid
-#%%
-#creating empty list to store output
-array = np.arange(13)
-print(array)
-myoutput = []
-for i in (array):
-    myinput = grid[i]
-    for k,g in groupby(myinput):
-        myoutput.append('line')
-        myoutput.append((len(list(g)),int(k)))
-print (myinput)
-print(*myoutput)
-#%%
-#initial code (only reads the first line)
-array = np.arange(13)
-print(array)
-for i in (array):
-    myinput = grid[i]
-print (myinput)
-#%%
+
+grid = np.array(grid) #convert grid to array
+print(grid[12,12])
+
+print(grid)
+print(type(grid))
+print(grid[1]) #print second row of grid
+#print(grid[:,0]) #print column
+
 #creating empty list to store output
 from itertools import groupby
-
-myoutput = []
-
-for k,g in groupby(myinput):
-
-    myoutput.append((len(list(g)),int(k)))
-
-print(*myoutput)
+array = np.arange(13)
+print(array)
 #%%
-downarray = np.array(dgrid)
+myoutput = []
+fix_grid = []
+for i in (array):
+    fix = sp.array(grid[i])
+    myinput = grid[i]
+    myoutput.append([i])
+    for k,g in groupby(myinput):
+        myoutput.append((len(list(g)),int(k))) #counts numbers of 1s and 0s
+    '''for ac in (array):
+        if fix[ac] == 1:
+            fix_grid.append('X')
+        else:
+            fix_grid.append([ac])'''
+    print (myinput)
+    #print(fix_grid)
+print(myoutput)
+#%%
+#doing columns (grid has been transposed)
+downarray = np.array(dgrid) #put transposed grid into array
 print(downarray)
 print(type(downarray))
 print(downarray[1])
 print(downarray[:,0])
 #%%
-#counts 0s and 1s in columns
+#counts 0s and 1s in columns (down)
 darray = []
 for j in (array):
     dinput = downarray[j]
     darray.append([j])
     for m,n in groupby(dinput):
         darray.append((len(list(n)),int(m)))
-print(dinput)
+    print(dinput)
 print(*darray)
 #%%
 xarray = np.arange(25) #for counting digits
 print(xarray)
 #%%
-print(len(x))
+print(len(x)) #to check number of elements in document
 for l in (xarray):
-    xstr = str(x[l]) #counts number of digits in each number
-    xact = len(xstr) - 2 #Include -2 if xstr has .0 on the end of each number
+    #xstr = str(x[l]) #count number of digits in each number
+    xint = int(x[l]) #convert x to integer
+    xstr = str(xint) #count number of digits in each number
+    xact = len(xstr) #Include -2 if xstr has .0 on the end of each number
     print(xstr)
-    print(xact)
+    print(xint)
+    #xout = '{:.8E}'.format(x) #tried to convert x to string. Did not need this
+    #print(xout)
+    #number = x[l]
+    #num = str(number)
+    print(xact)  
+#%%
+myoutput = []
+for i in (array):
+    myinput = grid[i]
+    myoutput.append([i])
+    for k,g in groupby(myinput):
+        myoutput.append((len(list(g)),int(k))) #counts numbers of 1s and 0s
+        #print(int(k))
+        if int(k) == 0:
+            print('whoo a number')
+        else:
+            print('yeet no number')
+        for l in (xarray):
+            xstr = str(x[l]) #count number of digits in each number
+            xact = len(xstr) - 2 #Include -2 if xstr has .0 on the end of each number         
+    print (myinput)
+print(myoutput)
 #%%
 def split(xstr):
     return list(xstr)

@@ -201,8 +201,8 @@ for l in (xarray):
                     
         #print (myinput)
     #print(*myoutput)
-print(across)
-print(across_n)
-print(down)
+print(across) #output is numbers that fit on rows
+print(across_n) #output is the rows that the numbers fit on
+print(down) #same as above for columns
 print(down_n)
 #%%

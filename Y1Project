@@ -138,37 +138,50 @@ for l in (xarray):
                     #print(across)
                     #print(across_n)
                     #counts 0s and 1s in columns (down)
-                    darray = []
-                    for j in (array):
-                        dinput = downarray[j]
-                        #darray.append([j])
-                        for m,n in groupby(dinput):
-                            dnum = len(list(n))
-                            darray.append((len(list(n)),int(m)))
-                            if int(m) == 0:
-                                mlist = []
-                                if dnum == xact:
-                                    #print(dinput)
-                                    for c in (array):
-                                        delement = dinput[c]
-                                        if delement == 0:
-                                            mlist.append([j])
-                                            mlist.append(xstr)
-                                        else:
-                                            mlist.append('-')
-                                    down.append(xstr)
-                                    down_n.append([j])
-                                    #try to check each digit in columns to see if across digit is equal
+                    #darray = []
+                    
+                    sgrid = split(myinput)
+                    print(sgrid)
+                    newgrid = []
+                    for yoo,yee in itertools.product(array, koththamalli):
+                        '''if there is the same number of consecutive 0s in sgrid then append each element of nlist to that position
+                        if not, append 'X' '''
+                        if sgrid[yoo] == 0:
+                            newgrid.append(nlist[yee])
+                            
+                            
+                    #print(list(g))
+    darray = []
+    for j in (array):
+        dinput = downarray[j]
+        #darray.append([j])
+        for m,n in groupby(dinput):
+            dnum = len(list(n))
+            darray.append((len(list(n)),int(m)))
+            if int(m) == 0:
+                mlist = []
+                if dnum == xact:
+                    #print(dinput)
+                    for c in (array):
+                        delement = dinput[c]
+                        if delement == 0:
+                            mlist.append([j])
+                            mlist.append(xstr)
+                        else:
+                            mlist.append('-')
+                    down.append(xstr)
+                    down_n.append([j])
+                    #try to check each digit in columns to see if across digit is equal
                                                                            
                         
-                        #print(dinput)
-                    #print(*darray)
+            #print(dinput)
+    #print(*darray)
                     
                     
         #print (myinput)
     #print(*myoutput)
 print(across)
 print(across_n)
-#print(down)
-#print(down_n)
+print(down)
+print(down_n)
 #%%

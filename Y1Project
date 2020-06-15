@@ -80,6 +80,9 @@ for j in (array):
 print(dinput)
 print(*darray)
 #%%
+xarray = np.arange(25) #for counting digits
+print(xarray)
+#%%
 print(len(x))
 for l in (xarray):
     xstr = str(x[l]) #counts number of digits in each number

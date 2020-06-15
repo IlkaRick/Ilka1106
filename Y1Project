@@ -4,12 +4,23 @@ import matplotlib.pyplot as plt
 from itertools import groupby
 import pandas as pd
 import itertools
+import array as arr
 #%%
 #numbers given
-x = sp.loadtxt(r"C:\Users\anugi\OneDrive\Documents\Physics\Y1_project\number_fit_1.txt")
+x,y_long = sp.loadtxt(r"C:\Users\anugi\OneDrive\Documents\Physics\Y1_project\number_fit_1.txt", unpack =True)
 print(x)
+print(y_long)
+y = []
+yarr = np.arange(13)
+for long in (yarr):
+    if y_long[long]==0:
+        continue
+    else:
+        y.append(y_long[long])
+
+print(y)
 #%%
-#using 0s as spaces and 1s as blocks. 
+#using 0s as spaces and 1s as blocks. Will change later
 grid = [[1,0,1,0,1,0,1,0,1,0,1,0,1],
         [0,0,0,0,0,0,1,0,0,0,0,0,0],
         [1,0,1,0,1,0,1,0,1,0,1,0,1],
@@ -77,8 +88,12 @@ for j in (array):
     print(dinput)
 print(*darray)
 #%%
-xarray = np.arange(25) #for counting digits
+print(len(x))
+print(len(y))
+xarray = np.arange(len(x)) #for counting digits
 print(xarray)
+yarray = np.arange(len(y))
+print(yarray)
 #%%
 print(len(x)) #to check number of elements in document
 for l in (xarray):
@@ -93,6 +108,12 @@ for l in (xarray):
     #number = x[l]
     #num = str(number)
     print(xact)  
+for yl in(yarray):
+    yint = int(y[yl])
+    ystr = str(yint)
+    yact = len(ystr)
+    print(ystr)
+    print(yact)
 #%%
 myoutput = []
 for i in (array):
@@ -172,7 +193,7 @@ for l in (xarray):
                             
                             
                     #print(list(g))
-    darray = []
+    '''darray = []
     for j in (array):
         dinput = downarray[j]
         #darray.append([j])
@@ -196,13 +217,13 @@ for l in (xarray):
                                                                            
                         
             #print(dinput)
-    #print(*darray)
+    #print(*darray)'''
                     
                     
         #print (myinput)
     #print(*myoutput)
-print(across) #output is numbers that fit on rows
-print(across_n) #output is the rows that the numbers fit on
-print(down) #same as above for columns
-print(down_n)
+print(across) #output is list of numbers in file
+print(across_n) #output is the rows on which there is space for them
+#print(down)
+#print(down_n)
 #%%

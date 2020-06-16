@@ -138,7 +138,7 @@ print(xarray)
 yarray = np.arange(len(y))
 print(yarray)
 #%%
-print(sort(x))
+#print(sort(x))
 #print(len(x)) #to check number of elements in document
 for l in (xarray):
     #xstr = str(x[l]) #count number of digits in each number
@@ -207,7 +207,7 @@ for l in (xarray):
                     
                     nlist = split(xstr) #split the digits in each number into a list
                     #print(nlist)
-                    koththamalli = np.arange(xact) 
+                    xran = np.arange(xact) 
                     #klist.append(xstr)
                     #klist = []
                     #bottom bit commented out as it does not quite work
@@ -238,33 +238,51 @@ for l in (xarray):
                         string_num = solve_grid[yoo]
                         #print(string_num)
                         if [yoo] == [i]: #making sure the right row is extracted from solve_grid
-                            #print('yes')
+                            print('yes')
+                            print(string_num)
                             for letter in (array):
-                                for digit in (koththamalli):
+                                for digit in (xran):
                                     #practice_string = string_num.replace('0','7')
                                     #print(practice_string)
                                     '''If there is the same number of 0s in a row as digits
                                     in xstr, replace that substring of 0s with xstr
                                     xact is number of digits in xstr'''
-                                    
+                                    zeros = xact*'0'
+                                    if string_num[letter-1] == string_num[letter]:
+                                        new_string = string_num.replace(zeros,xstr)
+                            print(new_string)
+                                        
                                     #if string_num[letter] == '1':
                                      #   continue
-                                    if string_num[letter] == '1':
-                                        continue
-                                    if string_num[letter] == '0':
-                                        continue
-                                    if string_num[letter] == '0':
-                                        continue
-                                    if string_num[letter] == '0':
-                                        continue
-                                    if string_num[letter] == '1':
-                                        new_string = string_num.replace('000',xstr)
-                                        across_array.append(new_string)
-                                    else:
-                                        across_array.append(string_num)
+# =============================================================================
+#                                     if string_num[letter] == '1':
+#                                         #res = string_num.replace('1','0')
+#                                         #print(res)
+#                                         continue
+#                                     if string_num[letter] == '0':
+#                                         continue
+#                                     if string_num[letter] == '0':
+#                                         continue
+#                                     if string_num[letter] == '0':
+#                                         continue
+#                                     if string_num[letter] == '1':
+#                                         new_str = string_num.replace('000',xstr)
+#                                     else:
+#                                         new_str = string_num
+#                             print(new_str)
+# =============================================================================
+                                        
+                                        #across_array.append(new_string)
+# =============================================================================
+#                                     else:
+#                                         new_string = string_num
+#                                         print(new_string)
+#                                         across_array.append(string_num)
+# =============================================================================
                                         #if string_num[letter+] == '0':
-                            across_array.append(new_string)                
-                            print(new_string)
+                                    
+                            #across_array.append(new_string)                
+                            #print(new_string)
                             #print(practice_string)
                         #print(string_num)      
                         #if sgrid[yoo] == 0:
@@ -297,8 +315,8 @@ for l in (xarray):
                         
             #print(dinput)
     #print(*darray)'''
-                    
-print(across_array)                    
+#print(new_string)                    
+#print(across_array)                    
         #print (myinput)
     #print(*myoutput)
 print(across) #output is list of numbers in file

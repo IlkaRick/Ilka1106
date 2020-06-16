@@ -6,6 +6,11 @@ import pandas as pd
 import itertools
 import array as arr
 #%%
+def sort(x):
+    for xnum in range(len(x)):
+        swap = i + np.argmin(x[xnum:])
+        (x[xnum],x[swap]) = (x[swap], x[xnum])
+    return x
 #numbers given
 x,y_long = sp.loadtxt(r"C:\Users\anugi\OneDrive\Documents\Physics\Y1_project\number_fit_1.txt", unpack =True)
 print(x)
@@ -34,7 +39,22 @@ grid = [[1,0,1,0,1,0,1,0,1,0,1,0,1],
         [1,0,1,0,1,0,1,0,1,0,1,0,1],
         [0,0,0,0,0,0,1,0,0,0,0,0,0],
         [1,0,1,0,1,0,1,0,1,0,1,0,1]] #using p18 Number fit puzzle. Copy and paste grid for other puzzles
+
+solve_grid = ['1010101010101',
+              '0000001000000',
+              '1010101010101',
+              '0000100000000',
+              '1011101110101',
+              '0000001000011',
+              '1010100010101',
+              '1100001000000',
+              '1010111011101',
+              '0000000010000',
+              '1010101010101',
+              '0000001000000',
+              '1010101010101']
 #grid[:] = ['*' if ac == 1 else ac for ac in grid]
+print(solve_grid)
 print(grid)
 #print(grid[])
 df = pd.DataFrame(data = grid) #transpose grid, to read columns later on
@@ -68,8 +88,16 @@ for i in (array):
         else:
             fix_grid.append([ac])'''
     print (myinput)
-    #print(fix_grid)
+# =============================================================================
+#     for r in range(len(myinput)):
+#         for row in range(len(myoutput)):
+#             if myinput[r] == myoutput[row]:
+# =============================================================================
+                
 print(myoutput)
+    #print(fix_grid)
+    #print(myoutput)
+
 #%%
 #doing columns (grid has been transposed)
 downarray = np.array(dgrid) #put transposed grid into array
@@ -95,7 +123,8 @@ print(xarray)
 yarray = np.arange(len(y))
 print(yarray)
 #%%
-print(len(x)) #to check number of elements in document
+print(sort(x))
+#print(len(x)) #to check number of elements in document
 for l in (xarray):
     #xstr = str(x[l]) #count number of digits in each number
     xint = int(x[l]) #convert x to integer
@@ -132,6 +161,7 @@ for i in (array):
     print (myinput)
 print(myoutput)
 #%%
+across_array = []
 def split(xstr):
     return list(xstr)
 myoutput = []
@@ -144,7 +174,9 @@ for l in (xarray):
     xint = int(x[l]) #convert to integer
     xstr = str(xint) #converts integer to string so that it can be counted
     xact = len(xstr) #Counts number of digits in each number
+    print()
     print(xstr)
+    
     #print(xact)
     #check if there is space in each row for the number (in for loop, so will check each number for each row indiviually)
     for i in (array):
@@ -158,8 +190,8 @@ for l in (xarray):
                 klist = []
                 if num == xact:
                     #print('indeed') #if the number of 0s is equal to the number of digits in the number
-                    print()
                     print(myinput)
+                    
                     nlist = split(xstr) #split the digits in each number into a list
                     #print(nlist)
                     koththamalli = np.arange(xact) 
@@ -183,15 +215,43 @@ for l in (xarray):
                     #darray = []
                     
                     sgrid = split(myinput)
-                    print(sgrid)
+                    #print(sgrid)
+                    #for string in (array):
+                        #if 
                     newgrid = []
-                    for yoo,yee in itertools.product(array, koththamalli):
+                    for yoo in (array):
                         '''if there is the same number of consecutive 0s in sgrid then append each element of nlist to that position
                         if not, append 'X' '''
-                        if sgrid[yoo] == 0:
-                            newgrid.append(nlist[yee])
+                        string_num = solve_grid[yoo]
+                        #print(string_num)
+                        if [yoo] == [i]: #making sure the right row is extracted from solve_grid
+                            #print('yes')
+                            for letter in (array):
+                                for digit in (koththamalli):
+                                    #practice_string = string_num.replace('0','7')
+                                    #print(practice_string)
+                                    if string_num[letter] == '1':
+                                        continue
+                                    if string_num[letter] == '0':
+                                        continue
+                                    if string_num[letter] == '0':
+                                        continue
+                                    if string_num[letter] == '0':
+                                        continue
+                                    if string_num[letter] == '1':
+                                        new_string = string_num.replace('000',xstr)
+                                        #across_array.append(new_string)
+                                    #else:
+                                        #across_array.append(string_num)
+                                        #if string_num[letter+] == '0':
+                            #across_array.append(new_string)                
+                            print(new_string)
+                            #print(practice_string)
+                        #print(string_num)      
+                        #if sgrid[yoo] == 0:
+                         #   newgrid.append(nlist[yee])
                             
-                            
+                       
                     #print(list(g))
     '''darray = []
     for j in (array):
@@ -219,7 +279,7 @@ for l in (xarray):
             #print(dinput)
     #print(*darray)'''
                     
-                    
+#print(across_array)                    
         #print (myinput)
     #print(*myoutput)
 print(across) #output is list of numbers in file

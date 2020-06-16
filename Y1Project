@@ -12,17 +12,18 @@ def sort(x):
         (x[xnum],x[swap]) = (x[swap], x[xnum])
     return x
 #numbers given
-x,y_long = sp.loadtxt(r"C:\Users\anugi\OneDrive\Documents\Physics\Y1_project\number_fit_1.txt", unpack =True)
+x_b,y_long = sp.loadtxt(r"C:\Users\anugi\OneDrive\Documents\Physics\Y1_project\number_fit_1.txt", unpack =True)
+x = sorted(x_b, reverse =True)
 print(x)
 print(y_long)
-y = []
+y_b = []
 yarr = np.arange(13)
 for long in (yarr):
     if y_long[long]==0:
         continue
     else:
-        y.append(y_long[long])
-
+        y_b.append(y_long[long])
+y =sorted(y_b, reverse =True)
 print(y)
 #%%
 #using 0s as spaces and 1s as blocks. Will change later
@@ -53,8 +54,22 @@ solve_grid = ['1010101010101',
               '1010101010101',
               '0000001000000',
               '1010101010101']
+down_grid = ['1010101110101',
+             '0000000100000',
+             '1010101010101',
+             '0000100000000',
+             '1011101010101',
+             '0000000010000',
+             '1110110110111',
+             '0000100000000',
+             '1010101011101',
+             '0000000010000',
+             '1010101010101',
+             '0000010000000',
+             '1010111010101']
 #grid[:] = ['*' if ac == 1 else ac for ac in grid]
 print(solve_grid)
+print(down_grid)
 print(grid)
 #print(grid[])
 df = pd.DataFrame(data = grid) #transpose grid, to read columns later on
@@ -174,9 +189,7 @@ for l in (xarray):
     xint = int(x[l]) #convert to integer
     xstr = str(xint) #converts integer to string so that it can be counted
     xact = len(xstr) #Counts number of digits in each number
-    print()
     print(xstr)
-    
     #print(xact)
     #check if there is space in each row for the number (in for loop, so will check each number for each row indiviually)
     for i in (array):
@@ -230,6 +243,12 @@ for l in (xarray):
                                 for digit in (koththamalli):
                                     #practice_string = string_num.replace('0','7')
                                     #print(practice_string)
+                                    '''If there is the same number of 0s in a row as digits
+                                    in xstr, replace that substring of 0s with xstr
+                                    xact is number of digits in xstr'''
+                                    
+                                    #if string_num[letter] == '1':
+                                     #   continue
                                     if string_num[letter] == '1':
                                         continue
                                     if string_num[letter] == '0':
@@ -240,11 +259,11 @@ for l in (xarray):
                                         continue
                                     if string_num[letter] == '1':
                                         new_string = string_num.replace('000',xstr)
-                                        #across_array.append(new_string)
-                                    #else:
-                                        #across_array.append(string_num)
+                                        across_array.append(new_string)
+                                    else:
+                                        across_array.append(string_num)
                                         #if string_num[letter+] == '0':
-                            #across_array.append(new_string)                
+                            across_array.append(new_string)                
                             print(new_string)
                             #print(practice_string)
                         #print(string_num)      
@@ -279,7 +298,7 @@ for l in (xarray):
             #print(dinput)
     #print(*darray)'''
                     
-#print(across_array)                    
+print(across_array)                    
         #print (myinput)
     #print(*myoutput)
 print(across) #output is list of numbers in file

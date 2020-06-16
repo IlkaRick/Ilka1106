@@ -41,7 +41,7 @@ grid = [[1,0,1,0,1,0,1,0,1,0,1,0,1],
         [0,0,0,0,0,0,1,0,0,0,0,0,0],
         [1,0,1,0,1,0,1,0,1,0,1,0,1]] #using p18 Number fit puzzle. Copy and paste grid for other puzzles
 
-solve_grid = ['1010101010101',
+across_grid = ['1010101010101',
               '0000001000000',
               '1010101010101',
               '0000100000000',
@@ -54,7 +54,7 @@ solve_grid = ['1010101010101',
               '1010101010101',
               '0000001000000',
               '1010101010101']
-down_grid = ['1010101110101',
+colu_grid = ['1010101110101',
              '0000000100000',
              '1010101010101',
              '0000100000000',
@@ -67,8 +67,17 @@ down_grid = ['1010101110101',
              '1010101010101',
              '0000010000000',
              '1010111010101']
-#grid[:] = ['*' if ac == 1 else ac for ac in grid]
+#solve_grid[:] = ['x' if ac == '1' else ac for ac in solve_grid]
+solve_grid =[]
+down_grid =[]
+for acr in range(13):
+    ve_grid = across_grid[acr].replace('1','x')
+    print(ve_grid)
+    solve_grid.append(ve_grid)
 print(solve_grid)
+for dow in range(13):
+    lu_grid = colu_grid[dow].replace('1','x')
+    down_grid.append(lu_grid)
 print(down_grid)
 print(grid)
 #print(grid[])
@@ -247,9 +256,15 @@ for l in (xarray):
                                     '''If there is the same number of 0s in a row as digits
                                     in xstr, replace that substring of 0s with xstr
                                     xact is number of digits in xstr'''
+                                    
                                     zeros = xact*'0'
                                     if string_num[letter-1] == string_num[letter]:
                                         new_string = string_num.replace(zeros,xstr)
+                                        '''if number fits, remove string_num from that
+                                        grid, and continue trying to fit the down numbers
+                                        assuming the number is right. If the down numbers
+                                        fit, continue. If not, append string_num back on
+                                        to the grid'''
                             print(new_string)
                                         
                                     #if string_num[letter] == '1':

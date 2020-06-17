@@ -388,20 +388,26 @@ real_across = []
 real_down = []
 for u in (aran):
     print()
+    print('across')
     print(acrosslist[u])
+    print('down')
     for v in (dran):
         for ele in (array):
             for dele in (array):
                 across_u = acrosslist[u]
-                drow = across_u[0]
                 arow = across_u[1]
                 down_v = downlist[v]
                 dcol = down_v[1]
                 downydown = str(down_v[0])
-                elem = str([ele])
+                downyacross = str(across_u[0])
+                acrossnum = int(across_u[0])
+                elem = str(ele)
+                delem = str(dele)
                 if downydown == elem:
-                    print('yey')
-                    if dcol[dele] == drow:
+                    #print('yey')
+                    if dele == acrossnum:
+                        #print('wahey')
                         if arow[ele] == dcol[dele]:
-                            print()
+                            #print('down')
                             print(downlist[v])
+#%%

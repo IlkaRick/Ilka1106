@@ -363,11 +363,17 @@ for t in (yarray):
             #print(dinput)
     #print(*darray)'''
 #print(new_string)                    
-#print(across_array)                    
-        #print (myinput)
-    #print(*myoutput)
-#print(across) #output is list of numbers in file
-#print(across_n) #output is the rows on which there is space for them
-#print(down)
-#print(down_n)
+aran = np.arange(len(across))
+dran = np.arange(len(down))
+acrosslist = (np.vstack((across_n, across)).T)
+downlist = (np.vstack((down_n, down)).T)
+# =============================================================================
+# print(across) #output is list of numbers in file
+# print(across_n) #output is the rows on which there is space for them
+# print(down)
+# print(down_n)
+# =============================================================================
+print(acrosslist)
+print()
+print(downlist)
 #%%

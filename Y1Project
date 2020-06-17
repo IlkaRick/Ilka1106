@@ -490,6 +490,7 @@ real_across = []
 real_down = []
 for u in (aran): #look through each row individually
     print()
+    #print()
     print('across')
     print(acrosslist[u])
     print('down')
@@ -515,26 +516,48 @@ for u in (aran): #look through each row individually
                     if dele == acrossnum: #equate element of column to row number
                         #print('wahey')
                         if arow[ele] == dcol[dele]: #if the elements in the row and column are the same
+                            #print('yey')
                             all_downs.append(acrosslist[u])
+                            aha_alist = []
                             if dcol[dele] =='0':
                                 if dcol[dele-1] =='0':
-                                    if dcol[dele-2] == '0':
+                                    if dcol[dele-2] == '0':                                        
                                         continue
-                                else:
-                                    all_downs.append(downlist[v])
-                                    print(downlist[v])
+# =============================================================================
+#                                 else:
+#                                     #print(acrosslist[u])
+#                                     uut = np.array(downlist[v])
+#                                     aha_alist.append(uut)
+#                                     print(uut)
+# =============================================================================
                             elif arow[ele] == 'x':
                                 continue
                             else:
                                 #print(arow[ele])
-                                #print(dcol[dele]) 
-                                all_downs.append(downlist[v])
-                                print(downlist[v]) #print column
-                            
+                                #print(dcol[dele])
+                                all_downs.append(ddown[v])
+                                only_right.append(aacross[u])
+                                #print(acrosslist[u])
+                                eet = np.array(downlist[v])
+                                aha_alist.append(eet)
+                                print(eet) #print column
+                            #aha_alist.append(downlist[v])       
+                                #print(aha_alist)
+                                #print(aha_alist)
+                            #if aha_alist == 0:
+                             #   acrosslist[u].remove()
+                            #else:
+                             #   all_downs.append(aha_alist)
+                                #print(all_downs)
+                                #aha_alist.clear()
+    #print(aha_alist) 
+#print(only_right)
+#print(all_downs)                         
+
                                 #print(all_downs)
                                 #dahl = int(dcol[dele])
-                            '''If the number is between two xs or one x and the edge of
-                            the grid, change rest of number to xs.'''
+                       # '''If the number is between two xs or one x and the edge of
+                        #the grid, change rest of number to xs.'''
                             #print(all_downs)
 # =============================================================================
 #                         if arow[ele] != dcol[dele]:
@@ -553,12 +576,7 @@ for u in (aran): #look through each row individually
 #                             only_right.append(dcol[dele])
 #                         else:
 #                             only_right.append('0')
-# =============================================================================
-                #if 
-                        
-#%%
-
-                        
+# =============================================================================                        
 #%%
 acrossrange = []
                             if new_string == six_string:

@@ -443,12 +443,32 @@ for halka in range(57):
     else:
         acrossn.append(stringcross[halka])
 print(acrossn)
-
-print(across)
+aacross = []
+for cham in range(57):
+    buruwa = across[cham]
+    for balla in range(15):
+        yakkha = split(buruwa)
+        del yakkha[0]
+        del yakkha[13]        
+    yakkho = ''.join(yakkha)
+    aacross.append(yakkho)
+        
+ddown = []
+for marine in range(40):
+    haraka = down[marine]
+    for nariya in range(15):
+        machang = split(haraka)
+        del machang[0]
+        del machang[13]
+    modaya = ''.join(machang)
+    ddown.append(modaya)
+    
+print(aacross)
+print(ddown)
 aran = np.arange(len(across)) #range of numbers in 
 dran = np.arange(len(down))
-acrosslist = (np.vstack((acrossn, across, acr_num)).T)
-downlist = (np.vstack((down_n, down, dow_num)).T)
+acrosslist = (np.vstack((acrossn, aacross, acr_num)).T)
+downlist = (np.vstack((down_n, ddown, dow_num)).T)
 # =============================================================================
 # print(across) #output is list of numbers in file
 # print(across_n) #output is the rows on which there is space for them

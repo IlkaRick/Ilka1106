@@ -383,3 +383,25 @@ for bun in acrosslist:
         meh = lamb[0]
         if hop == meh:
             print(bun[0],bun[1],lamb[1])
+#%%
+real_across = []
+real_down = []
+for u in (aran):
+    print()
+    print(acrosslist[u])
+    for v in (dran):
+        for ele in (array):
+            for dele in (array):
+                across_u = acrosslist[u]
+                drow = across_u[0]
+                arow = across_u[1]
+                down_v = downlist[v]
+                dcol = down_v[1]
+                downydown = str(down_v[0])
+                elem = str([ele])
+                if downydown == elem:
+                    print('yey')
+                    if dcol[dele] == drow:
+                        if arow[ele] == dcol[dele]:
+                            print()
+                            print(downlist[v])

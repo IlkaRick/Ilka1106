@@ -5,7 +5,7 @@ from itertools import groupby
 import pandas as pd
 import itertools
 import array as arr
-#%%
+
 def sort(x):
     for xnum in range(len(x)):
         swap = i + np.argmin(x[xnum:])
@@ -25,7 +25,7 @@ for long in (yarr):
         y_b.append(y_long[long])
 y =sorted(y_b, reverse =True)
 print(y)
-#%%
+
 #using 0s as spaces and 1s as blocks. Will change later
 grid = [[1,0,1,0,1,0,1,0,1,0,1,0,1],
         [0,0,0,0,0,0,1,0,0,0,0,0,0],
@@ -41,32 +41,32 @@ grid = [[1,0,1,0,1,0,1,0,1,0,1,0,1],
         [0,0,0,0,0,0,1,0,0,0,0,0,0],
         [1,0,1,0,1,0,1,0,1,0,1,0,1]] #using p18 Number fit puzzle. Copy and paste grid for other puzzles
 
-across_grid = ['1010101010101',
-              '0000001000000',
-              '1010101010101',
-              '0000100000000',
-              '1011101110101',
-              '0000001000011',
-              '1010100010101',
-              '1100001000000',
-              '1010111011101',
-              '0000000010000',
-              '1010101010101',
-              '0000001000000',
-              '1010101010101']
-colu_grid = ['1010101110101',
-             '0000000100000',
-             '1010101010101',
-             '0000100000000',
-             '1011101010101',
-             '0000000010000',
-             '1110110110111',
-             '0000100000000',
-             '1010101011101',
-             '0000000010000',
-             '1010101010101',
-             '0000010000000',
-             '1010111010101']
+across_grid = ['110101010101011',
+              '100000010000001',
+              '110101010101011',
+              '100001000000001',
+              '110111011101011',
+              '100000010000111',
+              '110101000101011',
+              '111000010000001',
+              '110101110111011',
+              '100000000100001',
+              '110101010101011',
+              '100000010000001',
+              '110101010101011']
+colu_grid = ['110101011101011',
+             '100000001000001',
+             '110101010101011',
+             '100001000000001',
+             '110111010101011',
+             '100000000100001',
+             '111101101101111',
+             '100001000000001',
+             '110101010111011',
+             '100000000100001',
+             '110101010101011',
+             '100000100000001',
+             '110101110101011']
 #solve_grid[:] = ['x' if ac == '1' else ac for ac in solve_grid]
 solve_grid =[]
 down_grid =[]
@@ -84,7 +84,7 @@ print(grid)
 df = pd.DataFrame(data = grid) #transpose grid, to read columns later on
 dgrid = df.T
 print(dgrid) #print transposed grid
-
+#%%
 grid = np.array(grid) #convert grid to array
 print(grid[12,12])
 
@@ -97,7 +97,7 @@ print(grid[1]) #print second row of grid
 from itertools import groupby
 array = np.arange(13)
 print(array)
-#%%
+
 myoutput = []
 fix_grid = []
 for i in (array):
@@ -122,14 +122,14 @@ print(myoutput)
     #print(fix_grid)
     #print(myoutput)
 
-#%%
+
 #doing columns (grid has been transposed)
 downarray = np.array(dgrid) #put transposed grid into array
 print(downarray)
 print(type(downarray))
 print(downarray[1])
 print(downarray[:,0])
-#%%
+
 #counts 0s and 1s in columns (down)
 darray = []
 for j in (array):
@@ -139,14 +139,14 @@ for j in (array):
         darray.append((len(list(n)),int(m)))
     print(dinput)
 print(*darray)
-#%%
+
 print(len(x))
 print(len(y))
 xarray = np.arange(len(x)) #for counting digits
 print(xarray)
 yarray = np.arange(len(y))
 print(yarray)
-#%%
+
 #print(sort(x))
 #print(len(x)) #to check number of elements in document
 for l in (xarray):
@@ -167,7 +167,7 @@ for yl in(yarray):
     yact = len(ystr)
     print(ystr)
     print(yact)
-#%%
+
 myoutput = []
 for i in (array):
     myinput = grid[i]
@@ -194,6 +194,8 @@ across = []
 across_n = []
 down = []
 down_n = []
+acr_num = []
+dow_num  = []
 print('Across')
 for l in (xarray):
     xint = int(x[l]) #convert to integer
@@ -222,8 +224,8 @@ for l in (xarray):
                     #bottom bit commented out as it does not quite work
                     #for a in (koththamalli):
                     #print(klist)
-                    across.append(xstr)
-                    across_n.append([i])
+                    #across.append(xstr)
+                    across_n.append(i)
                     #print(across)
                     #print(across_n)
                     #counts 0s and 1s in columns (down)
@@ -242,26 +244,33 @@ for l in (xarray):
                         if [yoo] == [i]: #making sure the right row is extracted from solve_grid
                             print('yes')
                             print(string_num)
-                            for letter in (array):
+                            for letter in range(15):
                                 for digit in (xran):
                                     #practice_string = string_num.replace('0','7')
                                     #print(practice_string)
                                     '''If there is the same number of 0s in a row as digits
                                     in xstr, replace that substring of 0s with xstr
                                     xact is number of digits in xstr'''
-                                    
-                                    zeros = xact*'0'
+                                    acnew_string = []
+                                    zeros = 'x' + xact*'0' + 'x'
+                                    newxstr = 'x' + xstr + 'x'
                                     if string_num[letter-1] == string_num[letter]:
-                                        new_string = string_num.replace(zeros,xstr)
+                                        new_string = string_num.replace(zeros,newxstr)
+                                        if new_string in across:
+                                            continue
+                                        else:
+                                            across.append(new_string)
+                                   
                                         '''if number fits, remove string_num from that
                                         grid, and continue trying to fit the down numbers
                                         assuming the number is right. If the down numbers
                                         fit, continue. If not, append string_num back on
                                         to the grid'''
+                                        
                             print('row number',array[yoo])
                             print(new_string)
-                            across.append(new_string)
-                            acr_num.append(xstr)            
+                            #across.append(new_string)
+                            acr_num.append(xstr)
                                     #if string_num[letter] == '1':
                                      #   continue
 # =============================================================================
@@ -317,7 +326,7 @@ for t in (yarray):
             if int(m) == 0:
                 mlist = []
                 if dnum == yact:
-                    #print(dinput)
+                    print(dinput)
                     for c in (array):
                         delement = dinput[c]
                         if delement == 0:
@@ -325,8 +334,8 @@ for t in (yarray):
                             mlist.append(ystr)
                         else:
                             mlist.append('-')
-                    down.append(ystr)
-                    down_n.append([j])
+                    #down.append(ystr)
+                    down_n.append(j)
                     #try to check each digit in columns to see if across digit is equal
                     tgrid = split(dinput)
                     yran = np.arange(yact)
@@ -340,41 +349,57 @@ for t in (yarray):
                         dstring_num = down_grid[yee]
                         #print(string_num)
                         if [yee] == [j]: #making sure the right row is extracted from solve_grid
-                            print('yes')
+                            #print('yes')
                             print(dstring_num)
-                            for dletter in (array):
+                            for dletter in range(15):
                                 for ddigit in (yran):
                                     #practice_string = string_num.replace('0','7')
                                     #print(practice_string)
                                     '''If there is the same number of 0s in a row as digits
                                     in xstr, replace that substring of 0s with xstr
                                     xact is number of digits in xstr'''
-                                    
-                                    dzeros = yact*'0'
+                                    newystr = 'x' + ystr + 'x'
+                                    dzeros = 'x' + yact*'0' + 'x'
                                     if dstring_num[dletter-1] == dstring_num[dletter]:
-                                        dnew_string = dstring_num.replace(dzeros,ystr)
+                                        dnew_string = dstring_num.replace(dzeros,newystr)
                                         '''if number fits, remove string_num from that
                                         grid, and continue trying to fit the down numbers
                                         assuming the number is right. If the down numbers
                                         fit, continue. If not, append string_num back on
                                         to the grid'''
-                            print('column number',array[yee])
+                            #print('column number',array[yee])
                             print(dnew_string)
                             down.append(dnew_string) 
-                            dow_num.append(ystr)
-                        
+                            dow_num.append(ystr)                                                 
             #print(dinput)
     #print(*darray)'''
 #print(new_string)                    
-aran = np.arange(len(across))
+#print(across_array)                    
+        #print (myinput)
+    #print(*myoutput)
+print(across)
+aran = np.arange(len(across)) #range of numbers in 
 dran = np.arange(len(down))
-acrosslist = (np.vstack((across_n, across, acr_num)).T)
+#acrosslist = (np.vstack((across_n, across, acr_num)).T)
 downlist = (np.vstack((down_n, down, dow_num)).T)
 # =============================================================================
 # print(across) #output is list of numbers in file
 # print(across_n) #output is the rows on which there is space for them
 # print(down)
 # print(down_n)
+# =============================================================================
+#print(acrosslist)
+print()
+print(downlist)
+#print(acr_num)
+#print(dow_num)
+# =============================================================================
+# yaha = acrosslist[0,:]
+# for ele in (array):
+#     row = yaha[1]
+#     print(row[ele])
+# print(yaha) 
+# =============================================================================
 # =============================================================================
 print(acrosslist)
 print()

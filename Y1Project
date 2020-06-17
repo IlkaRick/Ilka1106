@@ -377,3 +377,9 @@ print(acrosslist)
 print()
 print(downlist)
 #%%
+for bun in acrosslist:
+    for lamb in downlist:
+        hop = bun[0]
+        meh = lamb[0]
+        if hop == meh:
+            print(bun[0],bun[1],lamb[1])

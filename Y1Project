@@ -270,19 +270,41 @@ for l in (xarray):
                                 print('row number',array[yoo])
                                 print(new_string)
                             
-                            acrossrange = np.arange(len(across))
+                            acrossrange = []
+                            if new_string == six_string:
+                                if array[i]==1:
+                                    acrossrange.append(six_new_string)
+                                if array[i]==1:
+                                    acrossrange.append(six_new_string)
+                            
                                                           
                             if new_string == six_string:
-                                if  - 1]== across[newnum]:
-                                    across.append(six_new_string)
-                                    across_n.append(yoo)
-                                    acr_num.append(xstr)
+                                ar = np.arange(len(acrossrange))
+                                
+                                for siddhalepha in range(len(acrossrange)):                                
+                                    if array[i]== 1:
+                                        if siddhalepha ==1:
+                                            if six_new_string in across:
+                                                break
+                                        across.append(new_string)
+                                        across.append(six_new_string)
+                                        across_n.append(yoo)
+                                        across_n.append(yoo)
+                                        acr_num.append(xstr)
+                                        acr_num.append(xstr)
                                     
                                     
-                                else:
-                                    across_n.append(yoo)
-                                    acr_num.append(xstr)
-                                    across.append(new_string)
+                                    
+                                    elif array[i]== 11:
+                                        if siddhalepha ==1:
+                                            if six_new_string in across:
+                                                break
+                                        across.append(new_string)
+                                        across.append(six_new_string)
+                                        across_n.append(yoo)
+                                        across_n.append(yoo)
+                                        acr_num.append(xstr)
+                                        acr_num.append(xstr)
                                     
                                     
                                     
@@ -290,6 +312,17 @@ for l in (xarray):
                                 across_n.append(yoo)
                                 across.append(new_string)
                                 acr_num.append(xstr)
+# =============================================================================
+#                             acrossrange = []
+#                             if new_string == six_string:
+#                                 if array[i]==1:
+#                                     acrossrange.append(six_new_string)
+#                                 if array[i]==1:
+#                                     acrossrange.append(six_new_string)
+#                             acrossrange.append(new_string)
+#                                 
+# =============================================================================
+        
                                     #if string_num[letter] == '1':
                                      #   continue
 # =============================================================================
@@ -396,10 +429,25 @@ for t in (yarray):
 #print(across_array)                    
         #print (myinput)
     #print(*myoutput)
+acrossn = []
+stringcross = list(map(str,across_n))  
+
+
+for halka in range(57):
+    if stringcross[halka] == '1':
+        if stringcross[halka-2] == '1':
+            acrossu = stringcross[halka].replace('1','11')
+            acrossn.append(acrossu)
+        else:
+            acrossn.append(stringcross[halka])
+    else:
+        acrossn.append(stringcross[halka])
+print(acrossn)
+
 print(across)
 aran = np.arange(len(across)) #range of numbers in 
 dran = np.arange(len(down))
-acrosslist = (np.vstack((across_n, across, acr_num)).T)
+acrosslist = (np.vstack((acrossn, across, acr_num)).T)
 downlist = (np.vstack((down_n, down, dow_num)).T)
 # =============================================================================
 # print(across) #output is list of numbers in file
@@ -410,14 +458,6 @@ downlist = (np.vstack((down_n, down, dow_num)).T)
 print(acrosslist)
 print()
 print(downlist)
-#print(acr_num)
-#print(dow_num)
-# =============================================================================
-# yaha = acrosslist[0,:]
-# for ele in (array):
-#     row = yaha[1]
-#     print(row[ele])
-# print(yaha) 
 #%%
 for bun in acrosslist:
     for lamb in downlist:

@@ -260,7 +260,8 @@ for l in (xarray):
                                         to the grid'''
                             print('row number',array[yoo])
                             print(new_string)
-                                        
+                            across.append(new_string)
+                            acr_num.append(xstr)            
                                     #if string_num[letter] == '1':
                                      #   continue
 # =============================================================================
@@ -358,15 +359,17 @@ for t in (yarray):
                                         fit, continue. If not, append string_num back on
                                         to the grid'''
                             print('column number',array[yee])
-                            print(dnew_string)                                                       
+                            print(dnew_string)
+                            down.append(dnew_string) 
+                            dow_num.append(ystr)
                         
             #print(dinput)
     #print(*darray)'''
 #print(new_string)                    
 aran = np.arange(len(across))
 dran = np.arange(len(down))
-acrosslist = (np.vstack((across_n, across)).T)
-downlist = (np.vstack((down_n, down)).T)
+acrosslist = (np.vstack((across_n, across, acr_num)).T)
+downlist = (np.vstack((down_n, down, dow_num)).T)
 # =============================================================================
 # print(across) #output is list of numbers in file
 # print(across_n) #output is the rows on which there is space for them

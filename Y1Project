@@ -472,3 +472,46 @@ for u in (aran): #look through each row individually
                 #if 
                         
 #%%
+acrossrange = []
+                            if new_string == six_string:
+                                if array[i]==1:
+                                    acrossrange.append(six_new_string)
+                                if array[i]==1:
+                                    acrossrange.append(six_new_string)
+                            
+                                                          
+                            if new_string == six_string:
+                                ar = np.arange(len(acrossrange))
+                                                        
+                                if array[i]== 1:
+                                    if six_new_string in acrossrange:
+                                        continue
+                                    else:
+                                        across.append(new_string)
+                                        across.append(six_new_string)
+                                        across_n.append(yoo)
+                                        across_n.append(yoo)
+                                        acr_num.append(xstr)
+                                        acr_num.append(xstr)
+                                    
+                                elif array[i]== 11:
+                                     if six_new_string in acrossrange:
+                                         continue
+                                     else:
+                                         across.append(new_string)
+                                         across.append(six_new_string)
+                                         across_n.append(yoo)
+                                         across_n.append(yoo)
+                                         acr_num.append(xstr)
+                                         acr_num.append(xstr)
+                            else:
+                                across_n.append(yoo)
+                                across.append(new_string)
+                                acr_num.append(xstr)
+                            acrossrange = []
+                            if new_string == six_string:
+                                if array[i]==1:
+                                    acrossrange.append(six_new_string)
+                                if array[i]==1:
+                                    acrossrange.append(six_new_string)
+                            acrossrange.append(new_string)                                         

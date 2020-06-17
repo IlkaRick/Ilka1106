@@ -258,6 +258,7 @@ for l in (xarray):
                                         assuming the number is right. If the down numbers
                                         fit, continue. If not, append string_num back on
                                         to the grid'''
+                            print('row number',array[yoo])
                             print(new_string)
                                         
                                     #if string_num[letter] == '1':
@@ -356,6 +357,7 @@ for t in (yarray):
                                         assuming the number is right. If the down numbers
                                         fit, continue. If not, append string_num back on
                                         to the grid'''
+                            print('column number',array[yee])
                             print(dnew_string)                                                       
                         
             #print(dinput)

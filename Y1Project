@@ -194,6 +194,7 @@ across = []
 across_n = []
 down = []
 down_n = []
+print('Across')
 for l in (xarray):
     xint = int(x[l]) #convert to integer
     xstr = str(xint) #converts integer to string so that it can be counted
@@ -209,7 +210,6 @@ for l in (xarray):
             num = len(list(g)) #number of 0s or 1s in a group
             myoutput.append((len(list(g)),int(k))) #counts numbers of 1s and 0s
             if int(k) == 0: #singles out spaces. 0 signifies a space
-                klist = []
                 if num == xact:
                     #print('indeed') #if the number of 0s is equal to the number of digits in the number
                     print(myinput)
@@ -221,13 +221,6 @@ for l in (xarray):
                     #klist = []
                     #bottom bit commented out as it does not quite work
                     #for a in (koththamalli):
-                    for b in (array):
-                        element = myinput[b]
-                        if element == 0:
-                            #klist.append([i])
-                            klist.append(xstr) #appends whole number
-                        else:
-                            klist.append('-')
                     #print(klist)
                     across.append(xstr)
                     across_n.append([i])
@@ -303,9 +296,16 @@ for l in (xarray):
                         #if sgrid[yoo] == 0:
                          #   newgrid.append(nlist[yee])
                             
-                       
-                    #print(list(g))
-    '''darray = []
+print()                       
+print('Down')                    #print(list(g))
+for t in (yarray):
+    yint = int(y[t]) #convert to integer
+    ystr = str(yint) #converts integer to string so that it can be counted
+    yact = len(ystr) #Counts number of digits in each number
+    print(ystr)
+    #print(yact)
+    #check if there is space in each row for the number (in for loop, so will check each number for each row indiviually)
+    darray = []
     for j in (array):
         dinput = downarray[j]
         #darray.append([j])
@@ -314,19 +314,49 @@ for l in (xarray):
             darray.append((len(list(n)),int(m)))
             if int(m) == 0:
                 mlist = []
-                if dnum == xact:
+                if dnum == yact:
                     #print(dinput)
                     for c in (array):
                         delement = dinput[c]
                         if delement == 0:
                             mlist.append([j])
-                            mlist.append(xstr)
+                            mlist.append(ystr)
                         else:
                             mlist.append('-')
-                    down.append(xstr)
+                    down.append(ystr)
                     down_n.append([j])
                     #try to check each digit in columns to see if across digit is equal
-                                                                           
+                    tgrid = split(dinput)
+                    yran = np.arange(yact)
+                    #print(sgrid)
+                    #for string in (array):
+                        #if 
+                    onegrid = []
+                    for yee in (array):
+                        '''if there is the same number of consecutive 0s in sgrid then append each element of nlist to that position
+                        if not, append 'X' '''
+                        dstring_num = down_grid[yee]
+                        #print(string_num)
+                        if [yee] == [j]: #making sure the right row is extracted from solve_grid
+                            print('yes')
+                            print(dstring_num)
+                            for dletter in (array):
+                                for ddigit in (yran):
+                                    #practice_string = string_num.replace('0','7')
+                                    #print(practice_string)
+                                    '''If there is the same number of 0s in a row as digits
+                                    in xstr, replace that substring of 0s with xstr
+                                    xact is number of digits in xstr'''
+                                    
+                                    dzeros = yact*'0'
+                                    if dstring_num[dletter-1] == dstring_num[dletter]:
+                                        dnew_string = dstring_num.replace(dzeros,ystr)
+                                        '''if number fits, remove string_num from that
+                                        grid, and continue trying to fit the down numbers
+                                        assuming the number is right. If the down numbers
+                                        fit, continue. If not, append string_num back on
+                                        to the grid'''
+                            print(dnew_string)                                                       
                         
             #print(dinput)
     #print(*darray)'''
@@ -334,8 +364,8 @@ for l in (xarray):
 #print(across_array)                    
         #print (myinput)
     #print(*myoutput)
-print(across) #output is list of numbers in file
-print(across_n) #output is the rows on which there is space for them
+#print(across) #output is list of numbers in file
+#print(across_n) #output is the rows on which there is space for them
 #print(down)
 #print(down_n)
 #%%

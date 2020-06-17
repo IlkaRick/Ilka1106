@@ -495,27 +495,52 @@ for u in (aran): #look through each row individually
     print('down')
     for v in (dran): #look through each column wrt the row
         #print('ufufu')
-        for ele in (array): #each element of the row
-            for dele in (array): #each element of the column
+        for ele in range(15): #each element of the row
+            for dele in range(15): #each element of the column
                 across_u = acrosslist[u] #looking at each row separately
                 arow = across_u[1] #the string representing the row
                 down_v = downlist[v] #looking at each column separately 
                 dcol = down_v[1] #the string repesenting the column
                 downydown = str(down_v[0]) #not necessary
-                #downyacross = str(across_u[0])
+                acrdig = across_u[2]
+                dowdig = down_v[2]
                 acrossnum = int(across_u[0]) #converting the row number to int
                 elem = str(ele) #converting element number to string
                 #delem = str(dele)
                 only_right = []
+                all_downs = []
+                wrong_downs = []
                 if downydown == elem: #equate element of row to column number
                     #print('yey')
                     if dele == acrossnum: #equate element of column to row number
                         #print('wahey')
                         if arow[ele] == dcol[dele]: #if the elements in the row and column are the same
-                            print(downlist[v]) #print column
-                            #dahl = int(dcol[dele])
+                            all_downs.append(acrosslist[u])
+                            if dcol[dele] =='0':
+                                if dcol[dele-1] =='0':
+                                    if dcol[dele-2] == '0':
+                                        continue
+                                else:
+                                    all_downs.append(downlist[v])
+                                    print(downlist[v])
+                            elif arow[ele] == 'x':
+                                continue
+                            else:
+                                #print(arow[ele])
+                                #print(dcol[dele]) 
+                                all_downs.append(downlist[v])
+                                print(downlist[v]) #print column
+                            
+                                #print(all_downs)
+                                #dahl = int(dcol[dele])
                             '''If the number is between two xs or one x and the edge of
                             the grid, change rest of number to xs.'''
+                            #print(all_downs)
+# =============================================================================
+#                         if arow[ele] != dcol[dele]:
+#                             wrong_downs.append(acrosslist[u])
+#                             wrong_do
+# =============================================================================
 # =============================================================================
 #                             if dcol[dele] == '0':
 #                                 if dcol[dele-1] == '0':
@@ -530,6 +555,9 @@ for u in (aran): #look through each row individually
 #                             only_right.append('0')
 # =============================================================================
                 #if 
+                        
+#%%
+
                         
 #%%
 acrossrange = []

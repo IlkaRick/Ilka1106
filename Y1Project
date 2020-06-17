@@ -225,7 +225,7 @@ for l in (xarray):
                     #for a in (koththamalli):
                     #print(klist)
                     #across.append(xstr)
-                    across_n.append(i)
+                    #across_n.append(i)
                     #print(across)
                     #print(across_n)
                     #counts 0s and 1s in columns (down)
@@ -254,23 +254,42 @@ for l in (xarray):
                                     acnew_string = []
                                     zeros = 'x' + xact*'0' + 'x'
                                     newxstr = 'x' + xstr + 'x'
+                                    six_string = 'x' + xstr + 'x000000x'
+                                    six_new_string = 'x000000x' +xstr +'x'
                                     if string_num[letter-1] == string_num[letter]:
-                                        new_string = string_num.replace(zeros,newxstr)
-                                        if new_string in across:
-                                            continue
-                                        else:
-                                            across.append(new_string)
+                                        new_string = string_num.replace(zeros,newxstr)                                        
+                                    if new_string in across:
+                                        continue
                                    
                                         '''if number fits, remove string_num from that
                                         grid, and continue trying to fit the down numbers
                                         assuming the number is right. If the down numbers
                                         fit, continue. If not, append string_num back on
                                         to the grid'''
-                                        
-                            print('row number',array[yoo])
-                            print(new_string)
-                            #across.append(new_string)
-                            acr_num.append(xstr)
+                            #across.append(six_new_string)            
+                                print('row number',array[yoo])
+                                print(new_string)
+                            
+                            acrossrange = np.arange(len(across))
+                                                          
+                            if new_string == six_string:
+                                if  - 1]== across[newnum]:
+                                    across.append(six_new_string)
+                                    across_n.append(yoo)
+                                    acr_num.append(xstr)
+                                    
+                                    
+                                else:
+                                    across_n.append(yoo)
+                                    acr_num.append(xstr)
+                                    across.append(new_string)
+                                    
+                                    
+                                    
+                            else:
+                                across_n.append(yoo)
+                                across.append(new_string)
+                                acr_num.append(xstr)
                                     #if string_num[letter] == '1':
                                      #   continue
 # =============================================================================
@@ -380,7 +399,7 @@ for t in (yarray):
 print(across)
 aran = np.arange(len(across)) #range of numbers in 
 dran = np.arange(len(down))
-#acrosslist = (np.vstack((across_n, across, acr_num)).T)
+acrosslist = (np.vstack((across_n, across, acr_num)).T)
 downlist = (np.vstack((down_n, down, dow_num)).T)
 # =============================================================================
 # print(across) #output is list of numbers in file
@@ -388,7 +407,7 @@ downlist = (np.vstack((down_n, down, dow_num)).T)
 # print(down)
 # print(down_n)
 # =============================================================================
-#print(acrosslist)
+print(acrosslist)
 print()
 print(downlist)
 #print(acr_num)
@@ -399,11 +418,6 @@ print(downlist)
 #     row = yaha[1]
 #     print(row[ele])
 # print(yaha) 
-# =============================================================================
-# =============================================================================
-print(acrosslist)
-print()
-print(downlist)
 #%%
 for bun in acrosslist:
     for lamb in downlist:

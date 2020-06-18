@@ -739,3 +739,6 @@ print(d_even_numbers)
 downlist = np.array(d_even_numbers)
 print(downlist)
 #%%
+#check for a certain row number, if there is a specific column number only occurs once, the combination must be true.
+    Given condition 1 is fulfilled, check when row number == column number, if it returns correct results, the combination will also be true.
+    

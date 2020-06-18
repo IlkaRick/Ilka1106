@@ -717,3 +717,25 @@ anewstack=(['3' '0000x54401963' '54401963'], ['7' '9454x00000000' '9454'],
 ['6' 'x0x0x183x0x0x' '183'], ['7' '0000x83823785' '83823785'],
 ['6' 'x0x0x183x0x0x' '183'], ['7' '0000x73725126' '73725126']
 )
+#%%
+newlist = []
+for i in range(len(across_n) - 1):
+    value = across_n[i:i+2]
+    newlist.append(value)
+    print(newlist)
+odd_numbers = [y for x,y in enumerate(newlist) if x%2 != 0]
+even_numbers = [y for x,y in enumerate(newlist) if x%2 == 0]
+print(even_numbers)
+acrosslist = np.array(even_numbers)
+print(acrosslist)
+d_newlist = []
+for i in range(len(down_n) - 1):
+    value = down_n[i:i+2]
+    d_newlist.append(value)
+    print(d_newlist)
+d_odd_numbers = [y for x,y in enumerate(d_newlist) if x%2 != 0]
+d_even_numbers = [y for x,y in enumerate(d_newlist) if x%2 == 0]
+print(d_even_numbers)
+downlist = np.array(d_even_numbers)
+print(downlist)
+#%%

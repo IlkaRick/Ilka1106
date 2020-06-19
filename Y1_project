@@ -1,0 +1,1105 @@
+import scipy as sp
+import numpy as np
+import matplotlib.pyplot as plt
+from itertools import groupby
+import pandas as pd
+import itertools
+import array as arr
+from collections import UserString
+#%%
+def sort(x):
+    for xnum in range(len(x)):
+        swap = i + np.argmin(x[xnum:])
+        (x[xnum],x[swap]) = (x[swap], x[xnum])
+    return x
+#numbers given
+x_b,y_long = sp.loadtxt(r"C:\Users\anugi\OneDrive\Documents\Physics\Y1_project\number_fit_1.txt", unpack =True)
+x = sorted(x_b, reverse =True)
+print(x)
+print(y_long)
+y_b = []
+yarr = np.arange(13)
+for long in (yarr):
+    if y_long[long]==0:
+        continue
+    else:
+        y_b.append(y_long[long])
+y =sorted(y_b, reverse =True)
+print(y)
+
+#using 0s as spaces and 1s as blocks. Will change later
+grid = [[1,0,1,0,1,0,1,0,1,0,1,0,1],
+        [0,0,0,0,0,0,1,0,0,0,0,0,0],
+        [1,0,1,0,1,0,1,0,1,0,1,0,1],
+        [0,0,0,0,1,0,0,0,0,0,0,0,0],
+        [1,0,1,1,1,0,1,1,1,0,1,0,1],
+        [0,0,0,0,0,0,1,0,0,0,0,1,1],
+        [1,0,1,0,1,0,0,0,1,0,1,0,1],
+        [1,1,0,0,0,0,1,0,0,0,0,0,0],
+        [1,0,1,0,1,1,1,0,1,1,1,0,1],
+        [0,0,0,0,0,0,0,0,1,0,0,0,0],
+        [1,0,1,0,1,0,1,0,1,0,1,0,1],
+        [0,0,0,0,0,0,1,0,0,0,0,0,0],
+        [1,0,1,0,1,0,1,0,1,0,1,0,1]] #using p18 Number fit puzzle. Copy and paste grid for other puzzles
+
+across_grid = ['110101010101011',
+              '100000010000001',
+              '110101010101011',
+              '100001000000001',
+              '110111011101011',
+              '100000010000111',
+              '110101000101011',
+              '111000010000001',
+              '110101110111011',
+              '100000000100001',
+              '110101010101011',
+              '100000010000001',
+              '110101010101011']
+colu_grid = ['110101011101011',
+             '100000001000001',
+             '110101010101011',
+             '100001000000001',
+             '110111010101011',
+             '100000000100001',
+             '111101101101111',
+             '100001000000001',
+             '110101010111011',
+             '100000000100001',
+             '110101010101011',
+             '100000100000001',
+             '110101110101011']
+#solve_grid[:] = ['x' if ac == '1' else ac for ac in solve_grid]
+solve_grid =[]
+down_grid =[]
+for acr in range(13):
+    ve_grid = across_grid[acr].replace('1','x')
+    print(ve_grid)
+    solve_grid.append(ve_grid)
+print(solve_grid)
+for dow in range(13):
+    lu_grid = colu_grid[dow].replace('1','x')
+    down_grid.append(lu_grid)
+print(down_grid)
+print(grid)
+#print(grid[])
+df = pd.DataFrame(data = grid) #transpose grid, to read columns later on
+dgrid = df.T
+print(dgrid) #print transposed grid
+#%%
+grid = np.array(grid) #convert grid to array
+print(grid[12,12])
+
+print(grid)
+print(type(grid))
+print(grid[1]) #print second row of grid
+#print(grid[:,0]) #print column
+
+#creating empty list to store output
+from itertools import groupby
+array = np.arange(13)
+print(array)
+
+myoutput = []
+fix_grid = []
+for i in (array):
+    fix = sp.array(grid[i])
+    myinput = grid[i]
+    myoutput.append([i])
+    for k,g in groupby(myinput):
+        myoutput.append((len(list(g)),int(k))) #counts numbers of 1s and 0s
+    '''for ac in (array):
+        if fix[ac] == 1:
+            fix_grid.append('X')
+        else:
+            fix_grid.append([ac])'''
+    print (myinput)
+# =============================================================================
+#     for r in range(len(myinput)):
+#         for row in range(len(myoutput)):
+#             if myinput[r] == myoutput[row]:
+# =============================================================================
+                
+print(myoutput)
+    #print(fix_grid)
+    #print(myoutput)
+
+
+#doing columns (grid has been transposed)
+downarray = np.array(dgrid) #put transposed grid into array
+print(downarray)
+print(type(downarray))
+print(downarray[1])
+print(downarray[:,0])
+
+#counts 0s and 1s in columns (down)
+darray = []
+for j in (array):
+    dinput = downarray[j]
+    darray.append([j])
+    for m,n in groupby(dinput):
+        darray.append((len(list(n)),int(m)))
+    print(dinput)
+print(*darray)
+
+print(len(x))
+print(len(y))
+xarray = np.arange(len(x)) #for counting digits
+print(xarray)
+yarray = np.arange(len(y))
+print(yarray)
+
+#print(sort(x))
+#print(len(x)) #to check number of elements in document
+for l in (xarray):
+    #xstr = str(x[l]) #count number of digits in each number
+    xint = int(x[l]) #convert x to integer
+    xstr = str(xint) #count number of digits in each number
+    xact = len(xstr) #Include -2 if xstr has .0 on the end of each number
+    print(xstr)
+    print(xint)
+    print(xact)  
+for yl in(yarray):
+    yint = int(y[yl])
+    ystr = str(yint)
+    yact = len(ystr)
+    print(ystr)
+    print(yact)
+
+myoutput = []
+for i in (array):
+    myinput = grid[i]
+    myoutput.append([i])
+    for k,g in groupby(myinput):
+        myoutput.append((len(list(g)),int(k))) #counts numbers of 1s and 0s
+        #print(int(k))
+        if int(k) == 0:
+            print('whoo a number')
+        else:
+            print('yeet no number')
+        for l in (xarray):
+            xstr = str(x[l]) #count number of digits in each number
+            xact = len(xstr) - 2 #Include -2 if xstr has .0 on the end of each number         
+    print (myinput)
+print(myoutput)
+#%%
+across_array = []
+def split(xstr):
+    return list(xstr)
+myoutput = []
+print(len(x)) #to check number of elements in document
+across = []
+across_n = []
+down = []
+down_n = []
+acr_num = []
+dow_num  = []
+print('Across')
+for l in (xarray):
+    xint = int(x[l]) #convert to integer
+    xstr = str(xint) #converts integer to string so that it can be counted
+    xact = len(xstr) #Counts number of digits in each number
+    print(xstr)
+    #print(xact)
+    #check if there is space in each row for the number (in for loop, so will check each number for each row indiviually)
+    for i in (array):
+        myinput = grid[i] 
+        #print(myinput)
+        #myoutput.append([i])
+        for k,g in groupby(myinput):
+            num = len(list(g)) #number of 0s or 1s in a group
+            myoutput.append((len(list(g)),int(k))) #counts numbers of 1s and 0s
+            if int(k) == 0: #singles out spaces. 0 signifies a space
+                if num == xact:
+                    #print('indeed') #if the number of 0s is equal to the number of digits in the number
+                    print(myinput)
+                    
+                    nlist = split(xstr) #split the digits in each number into a list
+                    #print(nlist)
+                    xran = np.arange(xact) 
+                    sgrid = split(myinput)
+                    #print(sgrid)
+                    #for string in (array):
+                        #if 
+                    newgrid = []
+                    for yoo in (array):
+                        '''if there is the same number of consecutive 0s in sgrid then append each element of nlist to that position
+                        if not, append 'X' '''
+                        string_num = solve_grid[yoo]
+                        #print(string_num)
+                        if [yoo] == [i]: #making sure the right row is extracted from solve_grid
+                            print('yes')
+                            print(string_num)
+                            for letter in range(15):
+                                for digit in (xran):
+                                    #practice_string = string_num.replace('0','7')
+                                    #print(practice_string)
+                                    '''If there is the same number of 0s in a row as digits
+                                    in xstr, replace that substring of 0s with xstr
+                                    xact is number of digits in xstr'''
+                                    acnew_string = []
+                                    zeros = 'x' + xact*'0' + 'x'
+                                    newxstr = 'x' + xstr + 'x'
+                                    six_string = 'x' + xstr + 'x000000x'
+                                    six_new_string = 'x000000x' +xstr +'x'
+                                    if string_num[letter-1] == string_num[letter]:
+                                        new_string = string_num.replace(zeros,newxstr)                                        
+                                    if new_string in across:
+                                        continue
+                                   
+                                        '''if number fits, remove string_num from that
+                                        grid, and continue trying to fit the down numbers
+                                        assuming the number is right. If the down numbers
+                                        fit, continue. If not, append string_num back on
+                                        to the grid'''
+                            #across.append(six_new_string)            
+                                print('row number',array[yoo])
+                                print(new_string)
+                            
+                            acrossrange = []
+                            if new_string == six_string:
+                                if array[i]==1:
+                                    acrossrange.append(six_new_string)
+                                if array[i]==1:
+                                    acrossrange.append(six_new_string)
+                            
+                                                          
+                            if new_string == six_string:
+                                ar = np.arange(len(acrossrange))
+                                
+                                for siddhalepha in range(len(acrossrange)):                                
+                                    if array[i]== 1:
+                                        if siddhalepha ==1:
+                                            if six_new_string in across:
+                                                break
+                                        across.append(new_string)
+                                        across.append(six_new_string)
+                                        across_n.append(yoo)
+                                        across_n.append(yoo)
+                                        acr_num.append(xstr)
+                                        acr_num.append(xstr)
+                                    
+                                    
+                                    
+                                    elif array[i]== 11:
+                                        if siddhalepha ==1:
+                                            if six_new_string in across:
+                                                break
+                                        across.append(new_string)
+                                        across.append(six_new_string)
+                                        across_n.append(yoo)
+                                        across_n.append(yoo)
+                                        acr_num.append(xstr)
+                                        acr_num.append(xstr)
+                                   
+                            else:
+                                across_n.append(yoo)
+                                across.append(new_string)
+                                acr_num.append(xstr)
+
+print()                       
+print('Down')                    #print(list(g))
+for t in (yarray):
+    yint = int(y[t]) #convert to integer
+    ystr = str(yint) #converts integer to string so that it can be counted
+    yact = len(ystr) #Counts number of digits in each number
+    print(ystr)
+    #print(yact)
+    #check if there is space in each row for the number (in for loop, so will check each number for each row indiviually)
+    darray = []
+    for j in (array):
+        dinput = downarray[j]
+        #darray.append([j])
+        for m,n in groupby(dinput):
+            dnum = len(list(n))
+            darray.append((len(list(n)),int(m)))
+            if int(m) == 0:
+                mlist = []
+                if dnum == yact:
+                    print(dinput)
+                    for c in (array):
+                        delement = dinput[c]
+                        if delement == 0:
+                            mlist.append([j])
+                            mlist.append(ystr)
+                        else:
+                            mlist.append('-')
+                    #down.append(ystr)
+                    down_n.append(j)
+                    #try to check each digit in columns to see if across digit is equal
+                    tgrid = split(dinput)
+                    yran = np.arange(yact)
+                    #print(sgrid)
+                    #for string in (array):
+                        #if 
+                    onegrid = []
+                    for yee in (array):
+                        '''if there is the same number of consecutive 0s in sgrid then append each element of nlist to that position
+                        if not, append 'X' '''
+                        dstring_num = down_grid[yee]
+                        #print(string_num)
+                        if [yee] == [j]: #making sure the right row is extracted from solve_grid
+                            #print('yes')
+                            print(dstring_num)
+                            for dletter in range(15):
+                                for ddigit in (yran):
+                                    #practice_string = string_num.replace('0','7')
+                                    #print(practice_string)
+                                    '''If there is the same number of 0s in a row as digits
+                                    in xstr, replace that substring of 0s with xstr
+                                    xact is number of digits in xstr'''
+                                    newystr = 'x' + ystr + 'x'
+                                    dzeros = 'x' + yact*'0' + 'x'
+                                    if dstring_num[dletter-1] == dstring_num[dletter]:
+                                        dnew_string = dstring_num.replace(dzeros,newystr)
+                                        '''if number fits, remove string_num from that
+                                        grid, and continue trying to fit the down numbers
+                                        assuming the number is right. If the down numbers
+                                        fit, continue. If not, append string_num back on
+                                        to the grid'''
+                            #print('column number',array[yee])
+                            print(dnew_string)
+                            down.append(dnew_string) 
+                            dow_num.append(ystr)                                                 
+            #print(dinput)
+    #print(*darray)'''
+#print(new_string)                    
+#print(across_array)                    
+        #print (myinput)
+    #print(*myoutput)
+acrossn = []
+stringcross = list(map(str,across_n))  
+
+
+for halka in range(57):
+    if stringcross[halka] == '1':
+        if stringcross[halka-2] == '1':
+            acrossu = stringcross[halka].replace('1','11')
+            acrossn.append(acrossu)
+        else:
+            acrossn.append(stringcross[halka])
+    else:
+        acrossn.append(stringcross[halka])
+print(acrossn)
+aacross = []
+for cham in range(57):
+    buruwa = across[cham]
+    for balla in range(15):
+        yakkha = split(buruwa)
+        del yakkha[0]
+        del yakkha[13]        
+    yakkho = ''.join(yakkha)
+    aacross.append(yakkho)
+        
+ddown = []
+for marine in range(40):
+    haraka = down[marine]
+    for nariya in range(15):
+        machang = split(haraka)
+        del machang[0]
+        del machang[13]
+    modaya = ''.join(machang)
+    ddown.append(modaya)
+    
+print(aacross)
+print(ddown)
+aran = np.arange(len(across)) #range of numbers in 
+dran = np.arange(len(down))
+acrosslist = (np.vstack((acrossn, aacross, acr_num)).T)
+downlist = (np.vstack((down_n, ddown, dow_num)).T)
+# =============================================================================
+# print(across) #output is list of numbers in file
+# print(across_n) #output is the rows on which there is space for them
+# print(down)
+# print(down_n)
+# =============================================================================
+print(acrosslist)
+print()
+print(downlist)
+
+downyay = np.array(downlist)
+acryay = np.array(acrosslist)
+print(downyay)
+#%%
+re_across = []
+re_down = []
+test_across = []
+test_down = []
+for u in (aran): #look through each row individually
+    print()
+    #print()
+    print('across')
+    print(acrosslist[u])
+    print('down')
+    for v in (dran): #look through each column wrt the row
+        #print('ufufu')
+        for ele in range(15): #each element of the row
+            for dele in range(15): #each element of the column
+                across_u = acrosslist[u] #looking at each row separately
+                arow = across_u[1] #the string representing the row
+                down_v = downlist[v] #looking at each column separately 
+                dcol = down_v[1] #the string repesenting the column
+                downydown = str(down_v[0]) #not necessary
+                acrdig = aacross[u]
+                dowdig = ddown[v]
+                acrossnum = int(across_u[0]) #converting the row number to int
+                elem = str(ele) #converting element number to string
+                lacrosse = acrossn[u]
+                downy = down_n[v]
+                rcross = aacross[u]
+                cdown = ddown[v]
+                only_right = []
+                all_downs = []
+                wrong_downs = []
+                if downydown == elem: #equate element of row to column number
+                    #print('yey')
+                    if dele == acrossnum: #equate element of column to row number
+                        #print('wahey')
+                        if arow[ele] == dcol[dele]: #if the elements in the row and column are the same
+                            #print('yey')
+                            #all_downs.append(acrosslist[u])
+                            aha_alist = []
+                            if dcol[dele] =='0':
+                                if dcol[dele-1] =='0':
+                                    if dcol[dele-2] == '0':                                        
+                                        continue
+# =============================================================================
+#                                 else:
+#                                     #print(acrosslist[u])
+#                                     uut = np.array(downlist[v])
+#                                     aha_alist.append(uut)
+#                                     print(uut)
+# =============================================================================
+                            elif arow[ele] == 'x':
+                                continue
+                            else:
+                                #print(arow[ele])
+                                #print(dcol[dele])
+                                test_across.append(lacrosse)
+                                test_down.append(str(downy))
+                                test_across.append(rcross)
+                                test_down.append(cdown)
+                                #print(acrosslist[u])
+                                #eet = np.array(dcolumn)
+                                
+                                print(downlist[v]) #print column
+                            
+    #print(aha_alist) 
+print(test_across)
+print(test_down)                         
+# =============================================================================
+# print(re_across)
+# print(re_down)
+# =============================================================================
+#%%
+#print(test_across)
+#print(test_down)
+
+
+#%%
+testlist = []
+
+for me in range(len(test_across) - 1):
+    value = test_across[me:me+2]
+    testlist.append(value)
+    #print(newlist)
+odd_numbers = [y for x,y in enumerate(testlist) if x%2 != 0]
+even_numbers = [y for x,y in enumerate(testlist) if x%2 == 0]
+print(even_numbers)
+acroos = np.array(even_numbers)
+#print(acroos)
+d_testlist = []
+
+for you in range(len(test_down) - 1):
+    value = test_down[you:you+2]
+    d_testlist.append(value)
+    #print(d_newlist)
+d_odd_numbers = [y for x,y in enumerate(d_testlist) if x%2 != 0]
+d_even_numbers = [y for x,y in enumerate(d_testlist) if x%2 == 0]
+print(d_even_numbers)
+doon = np.array(d_even_numbers)
+print(doon)
+
+test_alist_1 = []
+test_alist_3 = []
+test_alist_5 = []
+test_alist_7 = []
+test_alist_9 = []
+test_alist_11 = []
+alist_6 = []
+
+for combi in range(len(acroos)):
+    acroo = acroos[combi]
+    for q in range(2):
+        if acroo[0] == '1':
+            test_alist_1.append(acroo[1])
+        elif acroo[0] == '3':
+            test_alist_3.append(acroo[1])
+        elif acroo[0] == '5':
+            test_alist_5.append(acroo[1])
+        elif acroo[0] == '7':
+            test_alist_7.append(acroo[1])
+        elif acroo[0] == '9':
+            test_alist_9.append(acroo[1])
+        elif acroo[0] == '11':
+            test_alist_11.append(acroo[1])
+        else:
+            alist_6.append(acroo[1])
+alist_6 = list(dict.fromkeys(alist_6))
+#print(alist_6)
+alist_1 = []
+alist_3 = []
+alist_5 = []
+alist_7 = []
+alist_9 = []
+alist_11 = []
+#print(test_alist_1)
+#print(test_alist_3)
+for aone in range(len(test_alist_1)):
+    onerow = test_alist_1[aone]
+    for aminus in range(len(test_alist_1)):
+        oneminus = test_alist_1[aminus]
+        for onespace in range(13):
+            begin = 'x000000'
+            end = '000000x'
+            row_1_zeros = '000000'
+            if begin in onerow:
+                if end in oneminus:
+                    substring_1 = oneminus.replace(end, '')
+                    one_string = onerow.replace(row_1_zeros, substring_1)
+                    alist_1.append(one_string)
+                else:
+                    continue
+            elif end in onerow:
+                if begin in oneminus:
+                    substring_2 = oneminus.replace(begin, '')
+                    two_string = onerow.replace(row_1_zeros, substring_2)
+                    alist_1.append(two_string)
+                else:
+                    continue
+            else:
+                continue
+alist_1 = list(dict.fromkeys(alist_1))
+for athree in range(len(test_alist_3)):
+    threerow = test_alist_3[athree]
+    for a_3 in range(len(test_alist_3)):
+        threeminus = test_alist_3[a_3]
+        for threespace in range(13):
+            begin = 'x00000000'
+            end = '0000x'
+            begin_zeros = '00000000'
+            end_zeros = '0000'
+            if begin in threerow:
+                if end in threeminus:
+                    substring_3 = threeminus.replace(end, '')
+                    three_string = threerow.replace(begin_zeros, substring_3)
+                    alist_3.append(three_string)
+                else:
+                    continue
+            elif end in threerow:
+                if begin in threeminus:
+                    substring_4 = threeminus.replace(begin, '')
+                    four_string = threerow.replace(end_zeros, substring_4)
+                    alist_3.append(four_string)
+                else:
+                    continue
+            else:
+                continue
+alist_3 = list(dict.fromkeys(alist_3))
+#print(alist_3)
+for afive in range(len(test_alist_5)):
+    fiverow = test_alist_5[afive]
+    for a_5 in range(len(test_alist_5)):
+        fiveminus = test_alist_5[a_5]
+        for fivespace in range(13):
+            begin = 'x0000xx'
+            end = '000000x'
+            begin_zeros = '0000'
+            end_zeros = '000000'
+            if begin in fiverow:
+                if end in fiveminus:
+                    substring_5 = fiveminus.replace(end, '')
+                    five_string = fiverow.replace(begin_zeros, substring_5)
+                    alist_5.append(five_string)
+                else:
+                    continue
+            elif end in fiverow:
+                if begin in fiveminus:
+                    substring_6 = fiveminus.replace(begin, '')
+                    six_string = fiverow.replace(end_zeros, substring_6)
+                    alist_5.append(six_string)
+                else:
+                    continue
+            else:
+                continue
+alist_5 = list(dict.fromkeys(alist_5))
+
+for asev in range(len(test_alist_7)):
+    sevrow = test_alist_7[asev]
+    for a_7 in range(len(test_alist_7)):
+        sevminus = test_alist_7[a_7]
+        for sevspace in range(13):
+            begin = 'x000000'
+            end = 'xx0000x'
+            begin_zeros = '000000'
+            end_zeros = '0000'
+            if begin in sevrow:
+                if end in sevminus:
+                    substring_7 = sevminus.replace(end, '')
+                    sev_string = sevrow.replace(begin_zeros, substring_7)
+                    alist_7.append(sev_string)
+                else:
+                    continue
+            elif end in sevrow:
+                if begin in sevminus:
+                    substring_8 = sevminus.replace(begin, '')
+                    eight_string = sevrow.replace(end_zeros, substring_8)
+                    alist_3.append(eight_string)
+                else:
+                    continue
+            else:
+                continue
+alist_7 = list(dict.fromkeys(alist_7))
+#print(alist_7)
+
+for anine in range(len(test_alist_9)):
+    ninerow = test_alist_9[anine]
+    for a_9 in range(len(test_alist_9)):
+        nineminus = test_alist_9[a_9]
+        for ninespace in range(13):
+            begin = 'x0000'
+            end = '00000000x'
+            begin_zeros = '0000'
+            end_zeros = '00000000'
+            if begin in ninerow:
+                if end in nineminus:
+                    substring_9 = nineminus.replace(end, '')
+                    nine_string = ninerow.replace(begin_zeros, substring_9)
+                    alist_9.append(nine_string)
+                else:
+                    continue
+            elif end in ninerow:
+                if begin in nineminus:
+                    substring_10 = nineminus.replace(begin, '')
+                    ten_string = ninerow.replace(end_zeros, substring_10)
+                    alist_9.append(ten_string)
+                else:
+                    continue
+            else:
+                continue
+alist_9 = list(dict.fromkeys(alist_9))
+#print(alist_9)
+
+for aele in range(len(test_alist_11)):
+    elerow = test_alist_11[aele]
+    for a_11 in range(len(test_alist_11)):
+        eleminus = test_alist_11[a_11]
+        for elespace in range(13):
+            begin = 'x000000'
+            end = '000000x'
+            begin_zeros = '000000'
+            end_zeros = '000000'
+            if begin in elerow:
+                if end in eleminus:
+                    substring_11 = eleminus.replace(end, '')
+                    ele_string = elerow.replace(begin_zeros, substring_11)
+                    alist_11.append(ele_string)
+                else:
+                    continue
+            elif end in elerow:
+                if begin in eleminus:
+                    substring_12 = eleminus.replace(begin, '')
+                    tw_string = elerow.replace(end_zeros, substring_12)
+                    alist_11.append(tw_string)
+                else:
+                    continue
+            else:
+                continue
+alist_11 = list(dict.fromkeys(alist_11))
+#print(alist_11)
+
+test_dlist_1 = []
+test_dlist_3 = []
+test_dlist_5 = []
+test_dlist_7 = []
+test_dlist_9 = []
+test_dlist_11 = []
+for combo in range(len(doon)):
+    doo = doon[combo]
+    for qq in range(2):
+        if doo[0] == '1':
+            test_dlist_1.append(doo[1])
+        elif doo[0] == '3':
+            test_dlist_3.append(doo[1])
+        elif doo[0] == '5':
+            test_dlist_5.append(doo[1])
+        elif doo[0] == '7':
+            test_dlist_7.append(doo[1])
+        elif doo[0] == '9':
+            test_dlist_9.append(doo[1])
+        else:
+            test_dlist_11.append(doo[1])
+
+dlist_1 = []
+dlist_3 = []
+dlist_5 = []
+dlist_7 = []
+dlist_9 = []
+dlist_11 = []
+
+for done in range(len(test_dlist_1)):
+    onecol = test_dlist_1[done]
+    for d_1 in range(len(test_dlist_1)):
+        one_d = test_dlist_1[d_1]
+        for onedspace in range(13):
+            begin = 'x00000'
+            end = '0000000x'
+            begin_0 = '00000'
+            end_0 = '0000000'
+            if begin in onecol:
+                if end in one_d:
+                    substring_1 = one_d.replace(end, '')
+                    one_dstring = onecol.replace(begin_0, substring_1)
+                    dlist_1.append(one_dstring)
+                else:
+                    continue
+            elif end in onecol:
+                if begin in one_d:
+                    substring_2 = one_d.replace(begin, '')
+                    two_dstring = onecol.replace(end_0, substring_2)
+                    dlist_1.append(two_dstring)
+                else:
+                    continue
+            else:
+                continue
+dlist_1 = list(dict.fromkeys(dlist_1))
+#print(dlist_1)
+
+for dthree in range(len(test_dlist_3)):
+    threecol = test_dlist_3[dthree]
+    for d_3 in range(len(test_dlist_3)):
+        three_d = test_dlist_3[d_3]
+        for threedspace in range(13):
+            begin = 'x00000000'
+            end = '0000x'
+            begin_0 = '00000000'
+            end_0 = '0000'
+            if begin in threecol:
+                if end in three_d:
+                    substring_3 = three_d.replace(end, '')
+                    three_dstring = threecol.replace(begin_0, substring_3)
+                    dlist_3.append(three_dstring)
+                else:
+                    continue
+            elif end in threecol:
+                if begin in three_d:
+                    substring_4 = three_d.replace(begin, '')
+                    four_dstring = threecol.replace(end_0, substring_4)
+                    dlist_3.append(four_dstring)
+                else:
+                    continue
+            else:
+                continue
+dlist_3 = list(dict.fromkeys(dlist_3))
+#print(dlist_3)
+
+for dfive in range(len(test_dlist_5)):
+    fivecol = test_dlist_5[dfive]
+    for d_5 in range(len(test_dlist_5)):
+        five_d = test_dlist_5[d_5]
+        for fivedspace in range(13):
+            begin = 'x0000'
+            end = '00000000x'
+            begin_0 = '0000'
+            end_0 = '00000000'
+            if begin in fivecol:
+                if end in five_d:
+                    substring_5 = five_d.replace(end, '')
+                    five_dstring = fivecol.replace(begin_0, substring_5)
+                    dlist_5.append(five_dstring)
+                else:
+                    continue
+            elif end in fivecol:
+                if begin in five_d:
+                    substring_6 = five_d.replace(begin, '')
+                    six_dstring = fivecol.replace(end_0, substring_6)
+                    dlist_5.append(six_dstring)
+                else:
+                    continue
+            else:
+                continue
+dlist_5 = list(dict.fromkeys(dlist_5))
+#print(dlist_5)
+
+for dsev in range(len(test_dlist_7)):
+    sevcol = test_dlist_7[dsev]
+    for d_7 in range(len(test_dlist_7)):
+        sev_d = test_dlist_7[d_7]
+        for sevdspace in range(13):
+            begin = 'x00000000'
+            end = '0000x'
+            begin_0 = '00000000'
+            end_0 = '0000'
+            if begin in sevcol:
+                if end in sev_d:
+                    substring_7 = sev_d.replace(end, '')
+                    sev_dstring = sevcol.replace(begin_0, substring_7)
+                    dlist_7.append(sev_dstring)
+                else:
+                    continue
+            elif end in sevcol:
+                if begin in sev_d:
+                    substring_8 = sev_d.replace(begin, '')
+                    eight_dstring = sevcol.replace(end_0, substring_8)
+                    dlist_7.append(eight_dstring)
+                else:
+                    continue
+            else:
+                continue
+dlist_7 = list(dict.fromkeys(dlist_7))
+#print(dlist_7)
+
+for dnine in range(len(test_dlist_9)):
+    ninecol = test_dlist_9[dnine]
+    for d_9 in range(len(test_dlist_9)):
+        nine_d = test_dlist_9[d_9]
+        for ninedspace in range(13):
+            begin = 'x0000'
+            end = '00000000x'
+            begin_0 = '0000'
+            end_0 = '00000000'
+            if begin in ninecol:
+                if end in nine_d:
+                    substring_9 = nine_d.replace(end, '')
+                    nine_dstring = ninecol.replace(begin_0, substring_9)
+                    dlist_9.append(nine_dstring)
+                else:
+                    continue
+            elif end in ninecol:
+                if begin in nine_d:
+                    substring_10 = nine_d.replace(begin, '')
+                    ten_dstring = ninecol.replace(end_0, substring_10)
+                    dlist_9.append(ten_dstring)
+                else:
+                    continue
+            else:
+                continue
+dlist_9 = list(dict.fromkeys(dlist_9))
+#print(dlist_9)
+
+for delev in range(len(test_dlist_11)):
+    elevcol = test_dlist_11[delev]
+    for d_11 in range(len(test_dlist_11)):
+        elev_d = test_dlist_11[d_11]
+        for eledspace in range(13):
+            begin = 'x0000000'
+            end = '00000x'
+            begin_0 = '0000000'
+            end_0 = '00000'
+            if begin in elevcol:
+                if end in elev_d:
+                    substring_11 = elev_d.replace(end, '')
+                    ele_dstring = elevcol.replace(begin_0, substring_11)
+                    dlist_11.append(ele_dstring)
+                else:
+                    continue
+            elif end in elevcol:
+                if begin in elev_d:
+                    substring_12 = elev_d.replace(begin, '')
+                    twe_dstring = elevcol.replace(end_0, substring_12)
+                    dlist_11.append(twe_dstring)
+                else:
+                    continue
+            else:
+                continue
+dlist_11 = list(dict.fromkeys(dlist_11))
+#print(dlist_11)
+#%%
+#rows are: alist_1, alist_3, alist_5, alist_7, alist_9, alist_11
+#columns are: dlist_1, dlist_3, dlist_5, dlist_7, dlist_9, dlist_11
+row_1 = []
+row_3 = []
+row_5 = []
+row_7 = []
+row_9 = []
+row_11 = []
+col_1 = []
+col_3 = []
+col_5 = []
+col_7 = []
+col_9 = []
+col_11 = []
+for row1 in range(len(alist_1)):
+    row_1t = alist_1[row1]
+    for row3 in range(len(alist_3)):
+        row_3t = alist_3[row3]
+        for row5 in range(len(alist_5)):
+            row_5t = alist_5[row5]
+            for row7 in range(len(alist_7)):
+                row_7t = alist_7[row7]
+                for row9 in range(len(alist_9)):
+                    row_9t = alist_9[row9]
+                    for row11 in range(len(alist_11)):
+                        row_11t = alist_1[row11]
+                        for col1 in range(len(dlist_1)):
+                            col_1t = dlist_1[col1]
+                            for eka in range(13):
+                                if col_1t[1] == row_1t[1]:
+                                    if col_1t[3]==row_3t[1]:
+                                        if col_1t[5]==row_5t[1]:
+                                            if col_1t[7]==row_7t[1]:
+                                                if col_1t[9]==row_9t[1]:
+                                                    if col_1t[11]==row_11t[1]:
+                                                        col_1.append(col_1t)
+                                                        
+                                                    else:
+                                                        continue
+                                                else:
+                                                    continue
+                                            else:
+                                                continue
+                                        else:
+                                            continue
+                                    else:
+                                        continue
+                                else:
+                                    continue
+                        for col3 in range(len(dlist_3)):
+                            col_3t = dlist_3[col3]
+                            if col_3t[1] == row_1t[3]:
+                                if col_3t[3]==row_3t[3]:
+                                    if col_3t[5]==row_5t[3]:
+                                        if col_3t[7]==row_7t[3]:
+                                            if col_3t[9]==row_9t[3]:
+                                                if col_3t[11]==row_11t[3]:
+                                                       col_3.append(col_3t)
+                                                else:
+                                                    continue
+                                            else:
+                                                continue
+                                        else:
+                                            continue
+                                    else:
+                                        continue
+                                else:
+                                    continue
+                            else:
+                                continue
+                        for col5 in range(len(dlist_5)):
+                            col_5t = dlist_5[col5]
+                            if col_5t[1] == row_1t[5]:
+                                if col_5t[3]==row_3t[5]:
+                                    if col_5t[5]==row_5t[5]:
+                                        if col_5t[7]==row_7t[5]:
+                                            if col_5t[9]==row_9t[5]:
+                                                if col_5t[11]==row_11t[5]:
+                                                       col_5.append(col_5t)
+                                                else:
+                                                    continue
+                                            else:
+                                                continue
+                                        else:
+                                            continue
+                                    else:
+                                        continue
+                                else:
+                                    continue
+                            else:
+                                continue
+                        for col7 in range(len(dlist_7)):
+                            col_7t = dlist_7[col7]
+                            if col_7t[1] == row_1t[7]:
+                                if col_7t[3]==row_3t[7]:
+                                    if col_7t[5]==row_5t[7]:
+                                        if col_7t[7]==row_7t[7]:
+                                            if col_7t[9]==row_9t[7]:
+                                                if col_7t[11]==row_11t[7]:
+                                                       col_7.append(col_7t)
+                                                else:
+                                                    continue
+                                            else:
+                                                continue
+                                        else:
+                                            continue
+                                    else:
+                                        continue
+                                else:
+                                    continue
+                            else:
+                                continue
+                        for col9 in range(len(dlist_9)):
+                            col_9t = dlist_9[col9]
+                            if col_9t[1] == row_1t[9]:
+                                if col_9t[3]==row_3t[9]:
+                                    if col_9t[5]==row_5t[9]:
+                                        if col_9t[7]==row_7t[9]:
+                                            if col_9t[9]==row_9t[9]:
+                                                if col_9t[11]==row_11t[9]:
+                                                       col_9.append(col_9t)
+                                                else:
+                                                    continue
+                                            else:
+                                                continue
+                                        else:
+                                            continue
+                                    else:
+                                        continue
+                                else:
+                                    continue
+                            else:
+                                continue
+                        for col11 in range(len(dlist_11)):
+                            col_11t = dlist_11[col11]
+                            if col_11t[1] == row_1t[11]:
+                                if col_11t[3]==row_3t[11]:
+                                    if col_11t[5]==row_5t[11]:
+                                        if col_11t[7]==row_7t[11]:
+                                            if col_11t[9]==row_9t[11]:
+                                                if col_11t[11]==row_11t[11]:
+                                                       col_11.append(col_11t)
+                                                       row_1.append(row_1t)
+                                                       row_3.append(row_3t)
+                                                       row_5.append(row_5t)
+                                                       row_7.append(row_7t)
+                                                       row_9.append(row_9t)
+                                                       row_11.append(row_11t)
+                                                else:
+                                                    continue
+                                            else:
+                                                continue
+                                        else:
+                                            continue
+                                    else:
+                                        continue
+                                else:
+                                    continue
+                            else:
+                                continue
+                        else:
+                            continue
+                    else:
+                        continue
+                else:
+                    continue
+            else:
+                continue
+        else:
+            continue
+    else:
+        continue
+                        
+                        
+print('Row 2 is:', row_1)
+print('Row 4 is:', row_3)
+print('Row 6 is:', row_5)
+print('Row 7 is:', alist_6)
+print('Row 8 is:', row_7)
+print('Row 10 is:', row_9)
+print('Row 12 is:', row_11)
+print('Column 2 is:', col_1)
+print('Column 4 is:', col_3)
+print('Column 6 is:', col_5)
+print('Column 8 is;', col_7)
+print('Column 10 is:', col_9)
+print('Column 12 is:', col_11)    
+#%%           
+               

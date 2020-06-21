@@ -10,3 +10,6 @@ plt.plot(x,y,'+')
 plt.xlabel("Age of volunteers")
 plt.ylabel("Time taken (sec)")
 plt.show()
+#%%
+time.sort()
+print(np.mean(time))

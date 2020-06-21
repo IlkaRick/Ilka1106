@@ -1,0 +1,12 @@
+import numpy as np
+import scipy as sp
+import matplotlib.pyplot as plt
+
+x,y = np.loadtxt(r"C:volunteer_time.txt", unpack =True)
+print(x)
+print(y)
+
+plt.plot(x,y,'+')
+plt.xlabel("Age of volunteers")
+plt.ylabel("Time taken (sec)")
+plt.show()

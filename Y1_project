@@ -565,20 +565,30 @@ for aone in range(len(test_alist_1)):
             if begin in onerow:
                 if end in oneminus:
                     substring_1 = oneminus.replace(end, '')
-                    one_string = onerow.replace(row_1_zeros, substring_1)
-                    alist_1.append(one_string)
+                    unsubstring_1 = onerow.replace(begin, '')
+                    if substring_1 == unsubstring_1:
+                        continue
+                    else:
+                        one_string = onerow.replace(row_1_zeros, substring_1)
+                        alist_1.append(one_string)
                 else:
                     continue
             elif end in onerow:
                 if begin in oneminus:
                     substring_2 = oneminus.replace(begin, '')
-                    two_string = onerow.replace(row_1_zeros, substring_2)
-                    alist_1.append(two_string)
+                    unsubstring_2 = onerow.replace(end, '')
+                    if substring_2==unsubstring_2:
+                        continue
+                    else:
+                        two_string = onerow.replace(row_1_zeros, substring_2)
+                        alist_1.append(two_string)
                 else:
                     continue
             else:
                 continue
 alist_1 = list(dict.fromkeys(alist_1))
+#print(alist_1)
+
 for athree in range(len(test_alist_3)):
     threerow = test_alist_3[athree]
     for a_3 in range(len(test_alist_3)):
@@ -606,6 +616,7 @@ for athree in range(len(test_alist_3)):
                 continue
 alist_3 = list(dict.fromkeys(alist_3))
 #print(alist_3)
+print(len(alist_3))
 for afive in range(len(test_alist_5)):
     fiverow = test_alist_5[afive]
     for a_5 in range(len(test_alist_5)):
@@ -653,7 +664,7 @@ for asev in range(len(test_alist_7)):
                 if begin in sevminus:
                     substring_8 = sevminus.replace(begin, '')
                     eight_string = sevrow.replace(end_zeros, substring_8)
-                    alist_3.append(eight_string)
+                    alist_7.append(eight_string)
                 else:
                     continue
             else:
@@ -701,21 +712,29 @@ for aele in range(len(test_alist_11)):
             if begin in elerow:
                 if end in eleminus:
                     substring_11 = eleminus.replace(end, '')
-                    ele_string = elerow.replace(begin_zeros, substring_11)
-                    alist_11.append(ele_string)
+                    unsubstring_11 = elerow.replace(begin, '')
+                    if substring_11 == unsubstring_11:
+                        continue
+                    else:
+                        ele_string = elerow.replace(begin_zeros, substring_11)
+                        alist_11.append(ele_string)
                 else:
                     continue
             elif end in elerow:
                 if begin in eleminus:
                     substring_12 = eleminus.replace(begin, '')
-                    tw_string = elerow.replace(end_zeros, substring_12)
-                    alist_11.append(tw_string)
+                    unsubstring_12 = elerow.replace(end, '')
+                    if substring_12 == unsubstring_12:
+                        continue
+                    else:
+                        tw_string = elerow.replace(end_zeros, substring_12)
+                        alist_11.append(tw_string)
                 else:
                     continue
             else:
                 continue
 alist_11 = list(dict.fromkeys(alist_11))
-#print(alist_11)
+print(alist_11)
 
 test_dlist_1 = []
 test_dlist_3 = []
@@ -913,6 +932,18 @@ for delev in range(len(test_dlist_11)):
                 continue
 dlist_11 = list(dict.fromkeys(dlist_11))
 #print(dlist_11)
+print(len(alist_1))
+print(len(dlist_1))
+print(len(alist_3))
+print(len(dlist_3))
+print(len(alist_5))
+print(len(dlist_5))
+print(len(alist_7))
+print(len(dlist_7))
+print(len(alist_9))
+print(len(dlist_9))
+print(len(alist_11))
+print(len(dlist_11))
 #%%
 #rows are: alist_1, alist_3, alist_5, alist_7, alist_9, alist_11
 #columns are: dlist_1, dlist_3, dlist_5, dlist_7, dlist_9, dlist_11
@@ -942,151 +973,32 @@ for row1 in range(len(alist_1)):
                         row_11t = alist_1[row11]
                         for col1 in range(len(dlist_1)):
                             col_1t = dlist_1[col1]
-                            for eka in range(13):
-                                if col_1t[1] == row_1t[1]:
-                                    if col_1t[3]==row_3t[1]:
-                                        if col_1t[5]==row_5t[1]:
-                                            if col_1t[7]==row_7t[1]:
-                                                if col_1t[9]==row_9t[1]:
-                                                    if col_1t[11]==row_11t[1]:
-                                                        col_1.append(col_1t)
-                                                        
-                                                    else:
-                                                        continue
-                                                else:
-                                                    continue
-                                            else:
-                                                continue
-                                        else:
-                                            continue
-                                    else:
-                                        continue
-                                else:
-                                    continue
-                        for col3 in range(len(dlist_3)):
-                            col_3t = dlist_3[col3]
-                            if col_3t[1] == row_1t[3]:
-                                if col_3t[3]==row_3t[3]:
-                                    if col_3t[5]==row_5t[3]:
-                                        if col_3t[7]==row_7t[3]:
-                                            if col_3t[9]==row_9t[3]:
-                                                if col_3t[11]==row_11t[3]:
-                                                       col_3.append(col_3t)
-                                                else:
-                                                    continue
-                                            else:
-                                                continue
-                                        else:
-                                            continue
-                                    else:
-                                        continue
-                                else:
-                                    continue
-                            else:
-                                continue
-                        for col5 in range(len(dlist_5)):
-                            col_5t = dlist_5[col5]
-                            if col_5t[1] == row_1t[5]:
-                                if col_5t[3]==row_3t[5]:
-                                    if col_5t[5]==row_5t[5]:
-                                        if col_5t[7]==row_7t[5]:
-                                            if col_5t[9]==row_9t[5]:
-                                                if col_5t[11]==row_11t[5]:
-                                                       col_5.append(col_5t)
-                                                else:
-                                                    continue
-                                            else:
-                                                continue
-                                        else:
-                                            continue
-                                    else:
-                                        continue
-                                else:
-                                    continue
-                            else:
-                                continue
-                        for col7 in range(len(dlist_7)):
-                            col_7t = dlist_7[col7]
-                            if col_7t[1] == row_1t[7]:
-                                if col_7t[3]==row_3t[7]:
-                                    if col_7t[5]==row_5t[7]:
-                                        if col_7t[7]==row_7t[7]:
-                                            if col_7t[9]==row_9t[7]:
-                                                if col_7t[11]==row_11t[7]:
-                                                       col_7.append(col_7t)
-                                                else:
-                                                    continue
-                                            else:
-                                                continue
-                                        else:
-                                            continue
-                                    else:
-                                        continue
-                                else:
-                                    continue
-                            else:
-                                continue
-                        for col9 in range(len(dlist_9)):
-                            col_9t = dlist_9[col9]
-                            if col_9t[1] == row_1t[9]:
-                                if col_9t[3]==row_3t[9]:
-                                    if col_9t[5]==row_5t[9]:
-                                        if col_9t[7]==row_7t[9]:
-                                            if col_9t[9]==row_9t[9]:
-                                                if col_9t[11]==row_11t[9]:
-                                                       col_9.append(col_9t)
-                                                else:
-                                                    continue
-                                            else:
-                                                continue
-                                        else:
-                                            continue
-                                    else:
-                                        continue
-                                else:
-                                    continue
-                            else:
-                                continue
-                        for col11 in range(len(dlist_11)):
-                            col_11t = dlist_11[col11]
-                            if col_11t[1] == row_1t[11]:
-                                if col_11t[3]==row_3t[11]:
-                                    if col_11t[5]==row_5t[11]:
-                                        if col_11t[7]==row_7t[11]:
-                                            if col_11t[9]==row_9t[11]:
-                                                if col_11t[11]==row_11t[11]:
-                                                       col_11.append(col_11t)
-                                                       row_1.append(row_1t)
-                                                       row_3.append(row_3t)
-                                                       row_5.append(row_5t)
-                                                       row_7.append(row_7t)
-                                                       row_9.append(row_9t)
-                                                       row_11.append(row_11t)
-                                                else:
-                                                    continue
-                                            else:
-                                                continue
-                                        else:
-                                            continue
-                                    else:
-                                        continue
-                                else:
-                                    continue
-                            else:
-                                continue
-                        else:
-                            continue
-                    else:
-                        continue
-                else:
-                    continue
-            else:
-                continue
-        else:
-            continue
-    else:
-        continue
-                        
+                            for col3 in range(len(dlist_3)):
+                                col_3t = dlist_3[col3]
+                                for col5 in range(len(dlist_5)):
+                                    col_5t = dlist_5[col5]
+                                    for col7 in range(len(dlist_7)):
+                                        col_7t = dlist_7[col7]
+                                        for col9 in range(len(dlist_9)):
+                                            col_9t = dlist_9[col9]
+                                            for col11 in range(len(dlist_11)):
+                                                col_11t = dlist_11[col11]
+                                                if col_1t[1]==row_1t[1] and col_1t[3]==row_3t[1] and col_1t[5]==row_5t[1] and col_1t[7]==row_7t[1] and col_1t[9]==row_9t[1] and col_1t[11]==row_11t[1] and col_3t[1]==row_1t[3] and col_3t[3]==row_3t[3] and col_3t[5]==row_5t[3] and col_3t[7]==row_7t[3] and col_3t[9]==row_9t[3] and col_3t[11]==row_11t[3] and col_5t[1]==row_1t[5] and col_5t[3]==row_3t[5] and col_5t[5]==row_5t[5] and col_5t[7]==row_7t[5] and col_5t[9]==row_9t[5] and col_5t[11]==row_11t[5] and col_7t[1]==row_1t[7] and col_7t[3]==row_3t[7] and col_7t[5]==row_5t[7] and col_7t[7]==row_7t[7] and col_7t[9]==row_9t[7] and col_7t[11]==row_11t[7] and col_9t[1]==row_1t[9] and col_9t[3]==row_3t[9] and col_9t[5]==row_5t[9] and col_9t[7]==row_7t[9] and col_9t[9]==row_9t[9] and col_9t[11]==row_11t[9] and col_11t[1]==row_1t[11] and col_11t[3]==row_3t[11] and col_11t[5]==row_5t[11] and col_11t[7]==row_7t[11] and col_11t[9]==row_9t[11] and col_11t[11]==row_11t[11]:
+                                                    row_1.append(row_1t)
+                                                    row_3.append(row_3t)
+                                                    row_5.append(row_5t)
+                                                    row_7.append(row_7t)
+                                                    row_9.append(row_9t)
+                                                    row_11.append(row_11t)
+                                                    col_1.append(col_1t)
+                                                    col_3.append(col_3t)
+                                                    col_5.append(col_5t)
+                                                    col_7.append(col_7t)
+                                                    col_9.append(col_9t)
+                                                    col_11.append(col_11t)
+                                                                                                                        
+                                                                        
+                                                    
                         
 print('Row 2 is:', row_1)
 print('Row 4 is:', row_3)
@@ -1100,6 +1012,5 @@ print('Column 4 is:', col_3)
 print('Column 6 is:', col_5)
 print('Column 8 is;', col_7)
 print('Column 10 is:', col_9)
-print('Column 12 is:', col_11)    
-#%%           
+print('Column 12 is:', col_11)            
                

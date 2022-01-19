@@ -71,5 +71,5 @@ plt.hist(zoom, bins = 100)
 mask_ones = np.ones((4611,2570))
 for i in range (len(image)):
     for j in range (len(image[0])):
-        if image[i,j] <= 3454:
+        if image[i,j] <= 3455:
             mask_ones[i,j] = 0

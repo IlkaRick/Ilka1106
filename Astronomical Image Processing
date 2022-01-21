@@ -21,3 +21,33 @@ for i in range(4611):
         if impix <= 3454: # Exclude values below chosen background
             mask[i][j] = 0 # Change 1 to 0
 print(mask)
+#%%
+################# LOAD REGIONS FILE ###################
+x, y, width, height, z = sp.loadtxt('C:/Users/anugi/OneDrive/Documents/Physics/Year 3/Labs/Astronomical Image Processing/left_regions.txt', dtype=str, unpack=True)
+print(x)
+print(width)
+print(height)
+#%%
+############### MASK AREAS WITHIN REGIONS #####################
+mask = np.ones((4611,2570)) # Create mask of 1s to indicate valid objects and background
+
+for k in range(len(x)):
+    xcentrefloat = float(x[k]) # Convert data from file to floats 
+    ycentrefloat = float(y[k])
+    widthfloat = float(width[k])
+    heightfloat = float(height[k])
+    xcentre = int(xcentrefloat) # Convert floats to intgers
+    ycentre = 4611 - (int(ycentrefloat))
+    width1 = (int(widthfloat) + 1)/2 # Divide wdith and height by 2 to add and subtract from centres
+    height1 = (int(heightfloat) + 1)/2    
+    widthedge1 = xcentre - width1 # Find edges of regions
+    widthedge2 = xcentre + width1
+    heightedge1 = ycentre - height1
+    heightedge2 = ycentre + height1
+    for i in range (4611):
+        for j in range (2570):
+            if i >= heightedge1 and i <=heightedge2:
+                if j >= widthedge1 and j <= widthedge2:
+                    mask[i][j] = 0
+print(mask)
+#%%

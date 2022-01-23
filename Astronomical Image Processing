@@ -51,3 +51,39 @@ for k in range(len(x)):
                     mask[i][j] = 0
 print(mask)
 #%%
+##########################################################################################################################################
+##################################################### GAUSSIAN FITTING ###################################################################
+##########################################################################################################################################
+
+
+############### REPLOT GAUSSIAN FOR BACKGROUND ####################
+background = []
+for m in range(4611):
+    for n in range(2570):
+        impix = pixel[m][n]
+        maskpos = mask[m][n]
+        if maskpos == 1:
+            #background.append(impix)
+            if impix>=3300 and impix<=3600:
+                background.append(impix)
+
+bins=np.linspace(3299.5, 3600.5, num=301, endpoint=False)
+print(bins)
+
+values,b,patches= plt.hist(background, bins=bins, color='deeppink')
+print(b)
+#Test parameters
+test_sigma = 50 #Standard deviation
+test_mu = 3450 #Mean
+test_norm = 100*1000000 #Normalisation
+p0 = [test_sigma, test_mu, test_norm]
+
+fit, fit_cov = curve_fit(Gaussian, xdata = b[0:300], ydata = values, p0=p0, maxfev=5000)
+print(fit)
+data_fit = Gaussian(b[0:300], *fit)
+plt.plot(b[0:300], data_fit, color = 'blueviolet')
+
+print(" sigma = " + str(fit[0])+ '+/-' +str (np.sqrt(fit_cov[0,0])))
+print(" mu = " + str(fit[1])+ '+/-' +str (np.sqrt(fit_cov[1,1])))
+print(" norm = " + str(fit[2])+ '+/-' +str (np.sqrt(fit_cov[2,2])))
+plt.show()

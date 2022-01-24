@@ -87,3 +87,32 @@ print(" sigma = " + str(fit[0])+ '+/-' +str (np.sqrt(fit_cov[0,0])))
 print(" mu = " + str(fit[1])+ '+/-' +str (np.sqrt(fit_cov[1,1])))
 print(" norm = " + str(fit[2])+ '+/-' +str (np.sqrt(fit_cov[2,2])))
 plt.show()
+
+#%%
+sigma = fit[0]
+mu = fit[1]
+
+cut_background = mu + 4.5 * sigma
+print(cut_background)
+#%%
+
+###### Choose to cut off background from 3500 #######
+################## CUT OFF BACKGROUND #######################
+
+for i in range(4611):
+    for j in range(2570): # For loop through whole image
+        # girl what the fuck
+        impix = pixel[i][j] # Assign variable to pixel
+        if impix <= 3500: # Exclude values below chosen background
+            mask[i][j] = 0 # Change 1 to 0
+print(mask)
+#%%
+pot_sources = [] # lmao
+for i in range(4611):
+    for j in range(2570): # For loop through whole image
+        # girl what the fucK
+        impix = pixel[i][j]
+        maskpix = mask[i][j]
+        if maskpix == 1:
+            pot_sources.append(impix)
+print(len(pot_sources))

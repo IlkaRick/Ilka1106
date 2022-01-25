@@ -1,0 +1,53 @@
+#%%
+'''
+NOTE: Indices are reversed:
+    Takes form of [y, x]
+'''
+
+############# DEFINE CIRCLE AND ELLIPSE ############
+def Circle(x, y, x0, y0):
+    r = ((x - x0)**2 + (y - y0)**2)**(1/2)
+    return r
+
+def Ellipse(x, y, x0, y0, a, b):
+    one = ((x - x0)**2)/(a**2) + ((y - y0)**2)/(b**2)
+    return one
+
+################## FIND SMALLEST SOURCES ###############
+sources = []
+copy_pixvalue = pix_value
+copy_pixpos = pix_pos
+for i in range(4611):
+    for j in range(2570):
+        impix = pixel[i][j]
+        maskpix = mask[i][j]
+        index = [i, j]
+        if maskpix == 1:
+            #print(index)
+        #if j == 700 and i == 350:
+            #break
+            max_value = max(pix_value)
+            max_index = pix_value.index(max_value) # Find index 
+            sepindex = pix_pos[max_index]
+            if sepindex == index:
+                x0 = sepindex[1]
+                y0 = sepindex[0]
+                r1 = 8
+                r2 = 10
+                bg_aperture = []
+                aperture = []
+                bg_indices = []
+                indices = []
+                for i in range(len(pix_value)):
+                    pv = pix_value[i]
+                    pi = pix_pos[i]
+                    x = pi[1]
+                    y = pi[0]
+                    radius = Circle(x, y, x0, y0)
+                    if radius >= r1 and radius <= r2:
+                        bg_aperture.append(pv)
+                        bg_indices.append(pi)
+                    elif radius <= r1:
+                        aperture.append()
+                        
+#%%

@@ -110,21 +110,38 @@ for i in range(4611):
             coor.append([y,x])
             pot_sources.append(image[i][j])
             maximum = max(pot_sources)
-#print(maximum)   #check if the first 3 loops work       
-            for num in range(len(pot_sources)):
-                x_range = []
-                y_range = []
-                total_pixel = []
-                if pot_sources[num] == maximum:
-                    x_centre = x_axis[num] - 1
-                    y_centre = y_axis[num] - 1
-                    y_up = y_centre + 50
-                    y_low = y_centre - 50
-                    x_right = x_centre + 50
-                    x_left = x_centre - 50
-                    if x_left <= i <= x_right:
-                        if y_low <= j <= y_up:
-                            if mask[i][j] == 1:
-                                x_range.append(i)
-                                y_range.append(j)
-                                total_pixel.append(image[i][j])
+print(maximum)   #check if the first 3 loops work  
+#%%     
+x_range = []
+y_range = []
+total_pixel = []
+lol = 50
+lel = 50
+for num in range(len(pot_sources)):
+    if pot_sources[num] == maximum:
+        x_centre = x_axis[num] - 1
+        y_centre = y_axis[num] - 1
+        y_up = y_centre + 20
+        y_low = y_centre - lol
+        x_right = x_centre + 25
+        x_left = x_centre - lel
+        print(x_centre)
+        print(y_centre)
+        print(x_left)
+        print(x_right)
+        print(y_up)
+        print(y_low)
+        for i in range(4611):
+            for j in range(2570):
+                if x_left <= j <= x_right:
+                    if y_low <= i <= y_up:
+                        if mask[i][j] == 1:
+                            x_range.append(j)
+                            y_range.append(i)
+                            total_pixel.append(image[i][j])
+                            mask[i][j] = 0
+
+#%%
+plt.plot(x_range,y_range,'+')
+#%%
+plt.hist(total_pixel)

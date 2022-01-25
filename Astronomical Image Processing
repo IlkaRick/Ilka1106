@@ -116,3 +116,31 @@ for i in range(4611):
         if maskpix == 1:
             pot_sources.append(impix)
 print(len(pot_sources))
+#%%
+'''
+NOTE: Indices are reversed:
+    Takes form of [y, x]
+'''
+def Circle(x, x0, y0, r):
+    y = (r**2 - (x - x0)**2)**(1/2) + y0
+    return y
+
+def Ellipse(x, x0, y0, a, b):
+    sqrt = 1 - ((x - x0)**2)/(a**2)
+    y = b*(sqrt**(1/2)) + y0
+    return y
+
+sources = []
+for i in range(4611):
+    for j in range(2570):
+        impix = pixel[i][j]
+        maskpix = mask[i][j]
+        index = [i, j]
+        if maskpix == 1:
+            #print(index)
+        #if j == 700 and i == 350:
+            #break
+            for i in range(len(pix_value)):
+                pv = pix_value[i]
+                pi = pix_pos[i]
+            

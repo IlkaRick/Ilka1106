@@ -88,7 +88,7 @@ for k in range(len(x)):
                     mask[i][j] = 0
 print(mask)
 print('run background/edges succeed')
-#%%
+
 #setting a cutting edge for the pixels
 for i in range(4611):
     for j in range(2570): # For loop through whole image
@@ -111,7 +111,20 @@ for i in range(4611):
             pot_sources.append(image[i][j])
             maximum = max(pot_sources)
 #print(maximum)   #check if the first 3 loops work       
-            for num in len(pot_sources):
+            for num in range(len(pot_sources)):
+                x_range = []
+                y_range = []
+                total_pixel = []
                 if pot_sources[num] == maximum:
                     x_centre = x_axis[num] - 1
                     y_centre = y_axis[num] - 1
+                    y_up = y_centre + 50
+                    y_low = y_centre - 50
+                    x_right = x_centre + 50
+                    x_left = x_centre - 50
+                    if x_left <= i <= x_right:
+                        if y_low <= j <= y_up:
+                            if mask[i][j] == 1:
+                                x_range.append(i)
+                                y_range.append(j)
+                                total_pixel.append(image[i][j])

@@ -113,8 +113,8 @@ y_axis = []
 x_range = []
 y_range = []
 total_pixel = []
-for i in range(4611):
-    for j in range(2570):
+for i in range(image):
+    for j in range(image[0]):
         x = j
         y = i
         if mask[i][j] == 1:
@@ -128,13 +128,21 @@ for i in range(4611):
             if num == index_max:
                 x_centre = x_axis[num] - 1
                 y_centre = y_axis[num] - 1
-            x_rad = abs(x_axis[num] - x_centre)
-            y_rad = abs(y_axis[num] - y_centre)
-            radius = Circle_radius(x_rad, y_rad, x_centre, y_centre) 
-            print(x_centre)
-            print(x_rad)
-            if radius < 2
-print(maximum)   #check if the first 3 loops work  
+            x_rad = abs(x_axis[num] - 1 - x_centre)
+            y_rad = abs(y_axis[num] - 1 - y_centre)
+            x_coor = x_axis[num] - 1
+            y_coor = y_axis[num] - 1
+            radius = Circle_radius(x_coor, y_coor, x_centre, y_centre) 
+            #print('x = ', x_centre)
+            #print(x_rad)
+            if x_rad <= 20:
+                if y_rad <= 20:
+                    if radius  < 20:
+                        print('x =', x_coor)
+                        print(x_centre)
+                        print('y =', y_coor)
+                        print(y_centre)
+                        print(radius)
 #%%     
 
 lol = 20

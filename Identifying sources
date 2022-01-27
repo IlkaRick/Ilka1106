@@ -1,4 +1,3 @@
-#%%
 '''
 NOTE: Indices are reversed:
     Takes form of [y, x]
@@ -17,6 +16,7 @@ def Ellipse(x, y, x0, y0, a, b):
 sources = []
 copy_pixvalue = pix_value
 copy_pixpos = pix_pos
+copy_mask = mask
 for i in range(4611):
     for j in range(2570):
         impix = pixel[i][j]
@@ -32,22 +32,41 @@ for i in range(4611):
             if sepindex == index:
                 x0 = sepindex[1]
                 y0 = sepindex[0]
-                r1 = 8
-                r2 = 10
+                r1 = 21
+                r2 = 23
                 bg_aperture = []
                 aperture = []
                 bg_indices = []
                 indices = []
-                for i in range(len(pix_value)):
-                    pv = pix_value[i]
-                    pi = pix_pos[i]
+                print('pixvalue:', len(pix_value))
+                for k in range(len(pix_value)):
+                    #print('yes')
+                    pv = pix_value[k]
+                    pi = pix_pos[k]
                     x = pi[1]
                     y = pi[0]
                     radius = Circle(x, y, x0, y0)
                     if radius >= r1 and radius <= r2:
                         bg_aperture.append(pv)
                         bg_indices.append(pi)
+                        pix_value.pop(k)
+                        pix_pos.pop(k)
+                        print('new pixvalue:', len(pix_value))
                     elif radius <= r1:
-                        aperture.append()
-                        
-#%%
+                        aperture.append(pv)
+                        indices.append(pi)
+                        pix_value.pop(k)
+                        pix_pos.pop(k)
+                if len(bg_aperture) == 0:
+                    comb = np.vstack((aperture, indices)).T # turn to 2d array
+                    f = open('Sources/source'+k, 'x') # Create file to put data in
+                    np.savetxt(f, comb)
+                    f.close()
+                    for ind in range(len(indices)):
+                        pixind = pix_pos[ind]
+                        xpos = pixind[1]
+                        ypos = pixind[0]
+                        mask[ypos][xpos] = 0
+                else:
+                    continue
+#%%     

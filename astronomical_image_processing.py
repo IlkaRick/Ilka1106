@@ -96,10 +96,23 @@ for i in range(4611):
         if impix <= 3500: # Exclude values below chosen background
             mask[i][j] = 0 # Change 1 to 0
 #%%
+#%%
+############# DEFINE CIRCLE AND ELLIPSE ############
+def Circle_radius(x, y, x0, y0):
+    r = ((x - x0)**2 + (y - y0)**2)**(1/2)
+    return r
+
+def Ellipse(x, y, x0, y0, a, b):
+    one = ((x - x0)**2)/(a**2) + ((y - y0)**2)/(b**2)
+    return one
+
 pot_sources = [] # potential sources
 coor = []
 x_axis = []
 y_axis = []
+x_range = []
+y_range = []
+total_pixel = []
 for i in range(4611):
     for j in range(2570):
         x = j
@@ -110,20 +123,29 @@ for i in range(4611):
             coor.append([y,x])
             pot_sources.append(image[i][j])
             maximum = max(pot_sources)
+            index_max = pot_sources.index(maximum)
+        for num in range(len(pot_sources)):
+            if num == index_max:
+                x_centre = x_axis[num] - 1
+                y_centre = y_axis[num] - 1
+            x_rad = abs(x_axis[num] - x_centre)
+            y_rad = abs(y_axis[num] - y_centre)
+            radius = Circle_radius(x_rad, y_rad, x_centre, y_centre) 
+            print(x_centre)
+            print(x_rad)
+            if radius < 2
 print(maximum)   #check if the first 3 loops work  
 #%%     
-x_range = []
-y_range = []
-total_pixel = []
-lol = 50
-lel = 50
+
+lol = 20
+lel = 20
 for num in range(len(pot_sources)):
     if pot_sources[num] == maximum:
         x_centre = x_axis[num] - 1
         y_centre = y_axis[num] - 1
-        y_up = y_centre + 20
+        y_up = y_centre + lol
         y_low = y_centre - lol
-        x_right = x_centre + 25
+        x_right = x_centre + lel
         x_left = x_centre - lel
         print(x_centre)
         print(y_centre)
@@ -139,7 +161,7 @@ for num in range(len(pot_sources)):
                             x_range.append(j)
                             y_range.append(i)
                             total_pixel.append(image[i][j])
-                            mask[i][j] = 0
+                            #mask[i][j] = 0
 
 #%%
 plt.plot(x_range,y_range,'+')

@@ -165,7 +165,7 @@ print(max_value)
 print(max_index)
 print(pix_pos[max_index])
 print(sepindex[0])
-#%%
+
 ############# DEFINE CIRCLE AND ELLIPSE ############
 def Circle(x, y, x0, y0):
     r = ((x - x0)**2 + (y - y0)**2)**(1/2)

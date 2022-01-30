@@ -165,7 +165,7 @@ print(max_value)
 print(max_index)
 print(pix_pos[max_index])
 print(sepindex[0])
-
+#%%
 ############# DEFINE CIRCLE AND ELLIPSE ############
 def Circle(x, y, x0, y0):
     r = ((x - x0)**2 + (y - y0)**2)**(1/2)
@@ -187,19 +187,19 @@ for k in range(len(pix_value)):
     if mask[ky][kx] == 0: # If mask is 0 at pix_value position, skip pix_value
         print('yos')
         continue
-    print('Ya maximum is:', max(pix_value))
+    print('Ya maximum is:', pix_value[k])
     #if pix_value[k] == max(pix_value):
     max_value = pix_value[k]
     max_index = pix_pos[k] # make sure index of value in loop matches brightest pixel
     x0 = max_index[1] # Separate x and y coordinates
     y0 = max_index[0]
-    r1 = 10.5 # Choose aperture radius from region file containing radius of brightest source
-    r2 = 16 # Choose bg aperture size
+    r1 = 20 # Choose aperture radius from region file containing radius of brightest source
+    r2 = 25 # Choose bg aperture size
     bg_aperture = []
     aperture = []
     bg_indices = []
     indices = []
-    print('pixvalue:', len(pix_value))
+    print('index yoo fool:', pix_pos[k])
     for i in range(4611):
         for j in range(2570):
             impix = pixel[i][j]
@@ -212,7 +212,7 @@ for k in range(len(pix_value)):
             elif radius <= r1:
                 aperture.append(impix)
                 indices.append(index)
-                mask[i][j] == 0
+                mask[i][j] = 0
                     #if index in pix_pos:
                         #pixvalue_index = pix_pos.index(index)
                         #pix_value.pop(pixvalue_index)
@@ -234,3 +234,17 @@ for k in range(len(pix_value)):
     gb.close()
     print('yeet')
 print('And the maximum pixel count is...', max(pix_value), '!')
+#%%
+###################### PLOT HISTOGRAM OF PIXEL COUNTS #####################
+first = [0,7,15,40,52,61,78,80,81,98,135,147,159,187,216,228,256,287,288,297,323]
+first1 = [369,441,450,467,547,555,556,590,664,690,716,728,746,770,815,822,842,855,981,1032,1118,1216,1307,1313,1327,1349,1380,1406,1459,1595,1625,1634,1639,1769,1828,1883,1892,1904,1907,1916,1955,1987,2053,2074,2079,2094,2123,2125,2130,2226,2338,2356,2430,2486,2516,2581,2703,2755,2787,2788,2898,2931,2959,2962,2996,3088,3204,3216,3512,3610,3646,3663,3702,3895,3902,3920,3951,3960,3970,4039,4086,4128,4139,4251,4310,4345,4511,4514,4625,4804,4885,4957,4997,5050]
+print(len(first))
+
+for file in range(len(first)):
+    num = str(first[file])
+    source_file = sp.loadtxt('Sources/source'+num)
+    print(max(source_file))
+    plt.hist(source_file, bins=1000)
+    plt.title('Plot count histogram source'+num)
+    plt.savefig('21histograms/plot'+num)
+    plt.show()

@@ -184,7 +184,7 @@ for k in range(len(pix_value)):
     k_index = pix_pos[k]
     kx = k_index[1]
     ky = k_index[0]
-    if mask[ky][kx] == 0:
+    if mask[ky][kx] == 0: # If mask is 0 at pix_value position, skip pix_value
         print('yos')
         continue
     print('Ya maximum is:', max(pix_value))

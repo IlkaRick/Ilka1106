@@ -1,0 +1,17 @@
+import statistics as st
+for file in range(len(first)):
+    num = str(first[file])
+    source_file = sp.loadtxt('bg_aperture/bg_aperture'+num)
+    yamedian = st.median(source_file)
+    yamax = str(yamedian)
+    plt.hist(source_file, bins=400)
+    plt.title('Plot count histogram source'+num+' median='+yamax)
+    plt.savefig('bg_histograms/bg_figure'+num)
+    plt.show()
+#%%
+source_file = sp.loadtxt('Sources/source4885')
+yamax = str(max(source_file))
+plt.hist(source_file, bins=100)
+plt.title('Plot count histogram source4885 max pix='+yamax)
+plt.savefig('bg_histograms/plot4885')
+plt.show()

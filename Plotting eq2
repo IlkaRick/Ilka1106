@@ -51,9 +51,9 @@ for j in range(len(invalids)):
 ########################### PLOT NUMBER-MAGNITUDE RELATION ###################
 print(max(magnitude), 'is the maximum!')
 print(min(magnitude), 'is the minimum!')
-maglist = np.linspace(7, 18, num=23, endpoint=True) # Create magnitude list
+maglist = np.linspace(8, 17, num=10, endpoint=True) # Create magnitude list
 print(maglist)
-
+#%%
 number = [] # number of sources
 magmedian = [] # median of bin
 numbin = []

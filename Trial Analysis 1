@@ -58,8 +58,8 @@ for file in range(len(first)):
     
     print('x_coor=', bgindex_x[bgindex_max]) #check for correct coordinate appended
     print('y_coor=', bgindex_y[bgindex_max])
-    bgx_coor.append(index_x[index_max])
-    bgy_coor.append(index_y[index_max])
+    bgx_coor.append(bgindex_x[bgindex_max])
+    bgy_coor.append(bgindex_y[bgindex_max])
     
     median = np.median(bg_file) #local background median
     print('background median',[num],'=', median)
@@ -82,3 +82,18 @@ data = np.array([x_coor, y_coor, final_sum, sum_sources, num_sources, max_source
 data = data.T
 
 np.savetxt('catalog_1.txt', data, delimiter = ',')
+#%%
+import os.path
+emptylist = [] #a list of path+filenames
+finallist = [] #empty list for the file[num] exist
+for j in range(112956):
+    num = str(j)
+    lel = 'Sources\source'+ num
+    emptylist.append(lel)
+    #%%
+for i in range(len(emptylist)):
+    emp = emptylist[i]
+    file_exist = os.path.exists(emp)
+    print(file_exist)
+    if file_exist == True:
+        finallist.append(i)

@@ -1,0 +1,78 @@
+#%%
+################# CHECK IF MAGNITUDES ARE INVALID #############
+invalids = []
+for i in range(len(finallist)):
+    index = finallist[i]
+    mag = str(magnitude[i])
+    
+    if mag == 'nan':
+        print([x_coor[i],y_coor[i]])
+        print(index)
+        invalids.append(int(index))
+print(len(magnitude))  
+
+################ REMOVE DATA WITHIN INVALID REGIONS FROM MAGNITUDE LIST ################
+for k in range(len(finallist)):
+    xcoor = x_coor[k]
+    ycoor = y_coor[k]
+    x = 2489 + 1 # x and y coordinates of region drawn around area we want to remove
+    y = 1961 + 1
+    w = 63 # width and height of region we are removing
+    h = 58
+    x1 = x - w/2 # x and y edges (if box shaped region)
+    x2 = x + w/2
+    y1 = y - h/2
+    y2 = y + h/2
+    if x1 <= xcoor <= x2 and y1 <= ycoor <= y2:
+        print(magnitude[k])
+        print(finallist[k])
+        magnitude = np.delete(magnitude, k) # delete unwanted element from array
+print(len(magnitude))
+#%%
+################### PLOT HISTOGRAMS FOR SOURCE AND BG APERTURE OF INVALID SOURCES ###########
+for j in range(len(invalids)):
+    num = str(invalids[j])
+    source_file = sp.loadtxt('bg_aperture/bg_aperture'+num)
+    yamax = str(max(source_file))
+    plt.hist(source_file, bins=100)
+    plt.title('Plot count histogram bg_aperture'+num+' max pix='+yamax)
+    plt.savefig('Invalids/bg_plot'+num)
+    plt.show()
+
+for j in range(len(invalids)):
+    num = str(invalids[j])
+    source_file = sp.loadtxt('Sources/source'+num)
+    yamax = str(max(source_file))
+    plt.hist(source_file, bins=100)
+    plt.title('Plot count histogram source'+num+' max pix='+yamax)
+    plt.savefig('Invalids/source_plot'+num)
+    plt.show()
+#%%
+########################### PLOT NUMBER-MAGNITUDE RELATION ###################
+print(max(magnitude), 'is the maximum!')
+print(min(magnitude), 'is the minimum!')
+maglist = np.linspace(7, 18, num=23, endpoint=True) # Create magnitude list
+print(maglist)
+
+number = [] # number of sources
+magmedian = [] # median of bin
+numbin = []
+for l in range(len(maglist)-1):
+    mag_bin = []
+    binend1 = maglist[l] # assign variables to either end of the bin
+    binend2 = maglist[l+1]
+    for q in range(len(magnitude)):
+        mag = magnitude[q]
+        if binend1 <= mag < binend2: # check if magnitude of source falls within bin
+            mag_bin.append(mag)
+    sum_mag = np.log10(len(mag_bin)) # number of sources in bin
+    binnum = len(mag_bin)
+    number.append(sum_mag)
+    mmedian = (binend1 + binend2)/2 # find middle of bin
+    magmedian.append(mmedian)
+    numbin.append(binnum)
+print(sum(numbin))
+plt.plot(magmedian, number, marker='x', color='deeppink', linestyle='')
+plt.xlabel('Absolute magnitude')
+plt.ylabel('Number of sources $\log10{N(m)}$')
+plt.show()

@@ -57,6 +57,8 @@ print(maglist)
 number = [] # number of sources
 magmedian = [] # median of bin
 numbin = []
+error_t = []
+error_b = []
 for l in range(len(maglist)-1):
     mag_bin = []
     binend1 = maglist[l] # assign variables to either end of the bin
@@ -67,12 +69,39 @@ for l in range(len(maglist)-1):
             mag_bin.append(mag)
     sum_mag = np.log10(len(mag_bin)) # number of sources in bin
     binnum = len(mag_bin)
+    error = np.sqrt(len(mag_bin))/len(mag_bin)*binnum
+    error_top = np.log10(binnum + error)
+    error_t.append(error_top)
+    error_bottom = np.log10(binnum - error)
+    error_b.append(error_bottom)
     number.append(sum_mag)
     mmedian = (binend1 + binend2)/2 # find middle of bin
     magmedian.append(mmedian)
     numbin.append(binnum)
+
+error_lower = abs(np.asarray(number) - np.asarray(error_b)) #upper error
+error_upper = abs(np.asarray(number) - np.asarray(error_t)) #lower error    
+print('lower error:', error_lower)
+print('its length:', len(error_lower))
+print('length number:', number, 'and length:', len(number))
+fit, cov = sp.polyfit(magmedian[0:7], number[0:7], 1, w= error_lower[0:7], cov=True)
+print('fit coeffs:', fit)
+print('cov matrix:', cov)
+
+sig_0 = sp.sqrt(cov[0,0]) #The uncertainty in the slope
+sig_1 = sp.sqrt(cov[1,1]) #The uncertainty in the intercept
+
+print('Slope = %.3e +/- %.3e' %(fit[0],sig_0))# Note the %.3e forces the values to be printed in scientific notation with 3 decimal places.
+print('Intercept = %.3e +/- %.3e' %(fit[1],sig_1))
+
+polycule=sp.poly1d(fit)
+print('polynomial throuple:', polycule)
+
+plt.figure(figsize=(12,9))
 print(sum(numbin))
-plt.plot(magmedian, number, marker='x', color='deeppink', linestyle='')
-plt.xlabel('Absolute magnitude')
-plt.ylabel('Number of sources $\log10{N(m)}$')
+plt.plot(magmedian, number, marker='x', mew=2, ms=14, color='deeppink', linestyle='')
+plt.errorbar(magmedian, number, yerr=(error_lower, error_upper), xerr=0.02, fmt='o', mew=2, ms=5, capsize=6, color='aquamarine')
+plt.plot(magmedian[0:7],polycule(magmedian[0:7]), color='gold', lw=2)
+plt.xlabel('Absolute magnitude', fontsize=17)
+plt.ylabel('Number of sources $\log10{N(m)}$', fontsize=17)
 plt.show()

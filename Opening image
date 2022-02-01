@@ -1,0 +1,13 @@
+from PIL import Image
+lmao = 0
+for r in range(len(finallist)):
+    if finallist[r] == lmao:
+        print (x_coor[r])
+        print (y_coor[r])
+        r = str(r)
+        bghist = "background histogram\plot"+r +".png"
+        schist = "histogram\plot"+r +".png"
+        imbg = Image.open(bghist)
+        imbg.show()
+        scim = Image.open(schist)
+        scim.show()
